@@ -4,4 +4,13 @@
     "<string name="characters">персонажи</string>"
     "<string name="locations">локации</string>"
     "<string name="episodes">эпизоды</string>"
+    "<string name="filter_option_name">name</string>"
+    "<string name="filter_option_status">status</string>"
+    "<string name="filter_option_species">species</string>"
+    "<string name="filter_option_type">type</string>"
+    "<string name="filter_option_gender">gender</string>"
+    "<string name="filter_option_dimension">dimension</string>"
+    "<string name="filter_option_episode">episode</string>"
+    "<string name="filter_option_apply_button">apply</string>"
+    <string name="search">Search</string>
 </resources>
