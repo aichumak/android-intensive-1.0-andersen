@@ -36,6 +36,7 @@ https://github.com/aichumak/android-intensive-1.0-andersen.git
 	app:layout_constraintTop_toTopOf="parent"  	  
 1.3 Создать новый макет фрагмента навигации "fragment_navigation"  
 1.3.1 Добавить в макет view BottomNavigationView с тремя вкладками: персонажи, локации, эпизоды  
+1.3.2 Создать папку макетов menu, создать макет "bottom_navigation_menu.xml", в макете реализовать три вкладки навигации: персонажи, локации, эпизоды    
 1.4 Создать новый макет фрагмента "fragment_list_view"   
 1.4.1 Добавить в макет контейнер для фрагментов groupview FrameLayout:  
 	android:id="@+id/list_view_fragment_container"  
@@ -60,6 +61,7 @@ https://github.com/aichumak/android-intensive-1.0-andersen.git
 1.10 Создать макет фрагмента деталей персонажа "fragment_character_details"  
 1.11 Создать макет фрагмента деталей локации "fragment_location_details"  
 1.12 Создать макет фрагмента деталей эпизода "fragment_episode_details"  
+1.13 В каталоге res\drawable создать иконку для фильтра   
   
 2. Создание Domain слоя  
 2.1 Создать класс "GetAllCharactersUseCase" для получения списка персонажей  
