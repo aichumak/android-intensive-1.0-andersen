@@ -1,11 +1,12 @@
-package com.example.rickandmorty
+package com.example.rickandmorty.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.rickandmorty.R
 
-class MainActivity : AppCompatActivity() {
+class FragmentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_fragment)
     }
 }
