@@ -1,6 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <CheckBox
+        android:id="@+id/characters_filter_name_checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="@string/filter_option_name" />
+
+    <EditText
+        android:id="@+id/characters_filter_name_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:minHeight="48dp"
+        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+    <CheckBox
+        android:id="@+id/characters_filter_status_checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="@string/filter_option_status"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <AutoCompleteTextView
+        android:id="@+id/characters_filter_status_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+    <CheckBox
+        android:id="@+id/characters_filter_species_checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="@string/filter_option_species" />
+
+    <EditText
+        android:id="@+id/characters_filter_species_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:minHeight="48dp"
+        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+    <CheckBox
+        android:id="@+id/characters_filter_type_checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="@string/filter_option_type" />
+
+    <EditText
+        android:id="@+id/characters_filter_type_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:minHeight="48dp"
+        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+    <CheckBox
+        android:id="@+id/characters_filter_gender_checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="@string/filter_option_gender"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <AutoCompleteTextView
+        android:id="@+id/characters_filter_gender_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/characters_filter_apply_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filter_option_apply_button"/>
+
+</LinearLayout>
