@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Rick and Morty</string>
+    "<string name="request_error">Не удалось загрузить данные по запросу:</string>"
+    "<string name="characters">персонажи</string>"
+    "<string name="locations">локации</string>"
+    "<string name="episodes">эпизоды</string>"
 </resources>
