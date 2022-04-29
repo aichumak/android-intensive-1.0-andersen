@@ -76,28 +76,40 @@ https://github.com/aichumak/android-intensive-1.0-andersen.git
 2.10 Создать интерфейс "AppRepository", в данном интерфейсе реализовать все функции указанные в п.п. 1.1-1.9  
   
 3. Создание Data слоя  
-Пока планирую использовать RXJava2 + Retrofit2 + Room, эти библиотеки проходил в одном онлайн-курсе, более менее знаю как использовать   
+Пока планирую использовать RXJava2 + Retrofit2 + Room + Paging 3, эти библиотеки проходил в одном онлайн-курсе, более менее знаю как использовать   
 3.1 В файл "build.gradle" (Module) добавить плагины:  
 	id 'kotlin-kapt'  
 	id 'kotlin-android-extensions'  
 3.2 Импортировать в "build.gradle" следующие зависимости:  
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'  
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.6'  
-    implementation 'androidx.core:core-ktx:1.7.0'  
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'  
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'  
-    def lifecycle_version = "2.4.0"  
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"  
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"  
-    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"  
-    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"  
-    def roomVersion = "2.4.1"  
-    implementation("androidx.room:room-runtime:$roomVersion")  
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")  
-    kapt("androidx.room:room-compiler:$roomVersion")  
-    implementation("androidx.room:room-ktx:$roomVersion")  
     implementation 'com.squareup.picasso:picasso:2.71828'  
-    implementation 'com.google.code.gson:gson:2.8.9'  
+  
+    implementation "io.reactivex.rxjava2:rxjava:2.2.6"   
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'   
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'   
+   
+    def lifecycle_version = "2.5.0-beta01"   
+    // ViewModel   
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")   
+    // LiveData   
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")   
+    // Annotation processor   
+    kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")   
+    // optional - ReactiveStreams support for LiveData   
+    implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version")   
+   
+    def roomVersion = "2.4.2"   
+    implementation("androidx.room:room-runtime:$roomVersion")   
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")   
+    // To use Kotlin annotation processing tool (kapt)   
+    kapt("androidx.room:room-compiler:$roomVersion")  
+    // optional - Paging 3 Integration   
+    implementation("androidx.room:room-paging:2.5.0-alpha01")  
+   
+    def paging_version = "3.1.1"  
+    implementation("androidx.paging:paging-runtime:$paging_version")   
+    // optional - RxJava2 support   
+    implementation("androidx.paging:paging-rxjava2:$paging_version")   
+       
 3.3 Для загрузки изображений использовать библиотеку Picasso  
 3.4 Создать pojo объекты (классы)  
 3.5 Создать абстрактный класс для базы данных, наследоваться от класса RoomDataBase, указать аннотацию @Database, передать в конструктор нужные параметры  
