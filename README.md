@@ -12,6 +12,7 @@ https://github.com/aichumak/android-intensive-1.0-andersen.git
   
 При разработке приложения применяются:  
 - базовые архитектуры: Clean architecture, Single Activity Architecture  
+- базовые паттерны: MVVM
 - viewbinding и databinding  
   
 Общий план этапов выполнения работ:  
