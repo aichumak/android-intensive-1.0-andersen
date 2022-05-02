@@ -15,7 +15,7 @@ interface EpisodesApiService {
     @GET()
     fun getEpisodesInfoList(): Single<EpisodesInfoListOfResult>
 
-    companion object{
+    companion object {
         private const val QUERY_PARAM_ID = "id"
     }
 }

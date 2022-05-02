@@ -6,5 +6,5 @@ import com.google.gson.annotations.SerializedName
 data class EpisodesInfoListOfResult(
     @SerializedName("results")
     @Expose
-    private val results: List<CharacterInfo>? = null
+    val results: List<CharacterInfo>? = null
 )

@@ -1,6 +1,7 @@
 package com.example.rickandmorty.api
 
-import com.example.rickandmorty.pojo.*
+import com.example.rickandmorty.pojo.CharacterInfo
+import com.example.rickandmorty.pojo.CharactersInfoListOfResult
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -14,7 +15,7 @@ interface CharactersApiService {
     @GET
     fun getCharactersInfoList(): Single<CharactersInfoListOfResult>
 
-    companion object{
+    companion object {
         private const val QUERY_PARAM_ID = "id"
     }
 }

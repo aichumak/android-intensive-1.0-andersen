@@ -1,7 +1,7 @@
 package com.example.rickandmorty.domain.locations
 
 class GetFilteredLocationUseCase(private val locationsRepository: LocationsRepository) {
-    fun getFilteredLocation(){
+    fun getFilteredLocation() {
         locationsRepository.getFilteredLocations()
     }
 }

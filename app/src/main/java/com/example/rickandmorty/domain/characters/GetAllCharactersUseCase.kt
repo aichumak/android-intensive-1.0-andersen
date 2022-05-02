@@ -1,7 +1,7 @@
 package com.example.rickandmorty.domain.characters
 
 class GetAllCharactersUseCase(private val charactersRepository: CharactersRepository) {
-    fun getAllCharacters(){
+    fun getAllCharacters() {
         charactersRepository.getAllCharacters()
     }
 }

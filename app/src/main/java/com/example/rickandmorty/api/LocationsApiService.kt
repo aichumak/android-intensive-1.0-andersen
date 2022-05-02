@@ -15,7 +15,7 @@ interface LocationsApiService {
     @GET
     fun getLocationsInfoList(): Single<LocationsInfoListOfResult>
 
-    companion object{
+    companion object {
         private const val QUERY_PARAM_ID = "id"
     }
 }
