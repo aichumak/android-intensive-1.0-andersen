@@ -1,4 +1,7 @@
 package com.example.rickandmorty.presentation
 
-class LocationFragment {
+import androidx.fragment.app.Fragment
+import com.example.rickandmorty.R
+
+class LocationFragment: Fragment(R.layout.fragment_location_details) {
 }

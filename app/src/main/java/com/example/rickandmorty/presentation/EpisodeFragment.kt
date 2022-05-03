@@ -1,4 +1,8 @@
 package com.example.rickandmorty.presentation
 
-class EpisodeFragment {
+import androidx.fragment.app.Fragment
+import com.example.rickandmorty.R
+
+class EpisodeFragment: Fragment(R.layout.fragment_episode_details) {
+
 }

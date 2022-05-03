@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.rickandmorty.databinding.FragmentCharacterListBinding
 import com.example.rickandmorty.pojo.CharacterInfo
 
 class CharacterAdapter : PagingDataAdapter<CharacterInfo,
-        ImageViewHolder>(diffCallback) {
-
+        CharacterAdapter.ImageViewHolder>(diffCallback) {
 
     inner class ImageViewHolder(
-        val binding:
+        val binding: FragmentCharacterListBinding
     ) :
         ViewHolder(binding.root)
 
@@ -28,10 +28,9 @@ class CharacterAdapter : PagingDataAdapter<CharacterInfo,
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         return ImageViewHolder(
-            CharacterLayoutBinding.inflate(
+            FragmentCharacterListBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
             )
@@ -57,4 +56,3 @@ class CharacterAdapter : PagingDataAdapter<CharacterInfo,
     }
 
 
-}
