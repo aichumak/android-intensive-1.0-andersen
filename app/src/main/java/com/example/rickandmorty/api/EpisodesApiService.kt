@@ -7,15 +7,15 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface EpisodesApiService {
-    @GET
+    @GET("episode/")
     fun getEpisodeInfo(
         @Query(QUERY_PARAM_ID) id: Int
     ): Single<EpisodeInfo>
 
-    @GET()
+    @GET("episode/")
     fun getEpisodesInfoList(): Single<EpisodesInfoListOfResult>
 
-    companion object{
+    companion object {
         private const val QUERY_PARAM_ID = "id"
     }
 }

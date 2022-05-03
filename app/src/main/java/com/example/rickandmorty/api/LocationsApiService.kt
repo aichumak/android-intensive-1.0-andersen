@@ -7,15 +7,15 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface LocationsApiService {
-    @GET
+    @GET("location/")
     fun getLocationInfo(
         @Query(QUERY_PARAM_ID) id: Int
     ): Single<LocationInfo>
 
-    @GET
+    @GET("location/")
     fun getLocationsInfoList(): Single<LocationsInfoListOfResult>
 
-    companion object{
+    companion object {
         private const val QUERY_PARAM_ID = "id"
     }
 }

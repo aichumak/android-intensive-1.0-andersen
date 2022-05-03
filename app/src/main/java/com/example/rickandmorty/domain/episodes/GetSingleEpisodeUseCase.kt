@@ -1,7 +1,7 @@
 package com.example.rickandmorty.domain.episodes
 
 class GetSingleEpisodeUseCase(private val episodesRepository: EpisodesRepository) {
-    fun getSingleEpisode(){
+    fun getSingleEpisode() {
         episodesRepository.getSingleEpisode()
     }
 }

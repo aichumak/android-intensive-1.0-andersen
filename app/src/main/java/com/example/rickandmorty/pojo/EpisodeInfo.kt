@@ -1,36 +1,41 @@
 package com.example.rickandmorty.pojo
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "episodes_list")
 data class EpisodeInfo(
-
+    @PrimaryKey
     @SerializedName("id")
     @Expose
-    private val id: Int? = null,
+    val id: Int,
 
     @SerializedName("name")
     @Expose
-    private val name: String? = null,
+    val name: String,
 
     @SerializedName("air_date")
     @Expose
-    private val airDate: String? = null,
+    val airDate: String,
 
     @SerializedName("episode")
     @Expose
-    private val episode: String? = null,
+    val episode: String,
 
     @SerializedName("characters")
     @Expose
-    private val characters: List<String>? = null,
+    @TypeConverters(EpisodeCharacterInfoConverter::class)
+    val characters: String,
 
     @SerializedName("url")
     @Expose
-    private val url: String? = null,
+    val url: String,
 
     @SerializedName("created")
     @Expose
-    private val created: String? = null
+    val created: String
 )
