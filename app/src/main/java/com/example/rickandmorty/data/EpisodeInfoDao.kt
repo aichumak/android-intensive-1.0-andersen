@@ -9,8 +9,8 @@ import com.example.rickandmorty.pojo.EpisodeInfo
 @Dao
 interface EpisodeInfoDao {
     @Query(
-        "SELECT * FROM episodes_list ORDER BY id" +
-                "LIMIT :limit" +
+        "SELECT * FROM episodes_list ORDER BY id " +
+                "LIMIT :limit " +
                 "OFFSET :offset"
     )
     fun getEpisodesInfoList(limit: Int, offset: Int): List<EpisodeInfo>

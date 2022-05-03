@@ -9,8 +9,8 @@ import com.example.rickandmorty.pojo.LocationInfo
 @Dao
 interface LocationInfoDao {
     @Query(
-        "SELECT * FROM locations_list ORDER BY id" +
-                "LIMIT :limit" +
+        "SELECT * FROM locations_list ORDER BY id " +
+                "LIMIT :limit " +
                 "OFFSET :offset"
     )
     fun getLocationsInfoList(limit: Int, offset: Int): List<LocationInfo>

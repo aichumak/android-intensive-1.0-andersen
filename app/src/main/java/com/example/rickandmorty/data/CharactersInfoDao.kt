@@ -9,8 +9,8 @@ import com.example.rickandmorty.pojo.CharacterInfo
 @Dao
 interface CharactersInfoDao {
     @Query(
-        "SELECT * FROM characters_list ORDER BY id" +
-                "LIMIT :limit" +
+        "SELECT * FROM characters_list ORDER BY id " +
+                "LIMIT :limit " +
                 "OFFSET :offset"
     )
     fun getCharactersInfoList(limit: Int, offset: Int): List<CharacterInfo>
