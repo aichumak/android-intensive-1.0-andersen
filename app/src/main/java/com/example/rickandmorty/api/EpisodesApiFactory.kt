@@ -5,7 +5,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object EpisodesApiFactory {
-    private const val BASE_URL = "https://rickandmortyapi.com/api/episode/"
+    private const val BASE_URL = "https://rickandmortyapi.com/api/"
 
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())

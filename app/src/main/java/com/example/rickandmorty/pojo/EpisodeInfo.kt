@@ -2,6 +2,7 @@ package com.example.rickandmorty.pojo
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
@@ -11,29 +12,30 @@ data class EpisodeInfo(
     @PrimaryKey
     @SerializedName("id")
     @Expose
-    val id: Int? = null,
+    val id: Int,
 
     @SerializedName("name")
     @Expose
-    val name: String? = null,
+    val name: String,
 
     @SerializedName("air_date")
     @Expose
-    val airDate: String? = null,
+    val airDate: String,
 
     @SerializedName("episode")
     @Expose
-    val episode: String? = null,
+    val episode: String,
 
     @SerializedName("characters")
     @Expose
-    val characters: List<String>? = null,
+    @TypeConverters(EpisodeCharacterInfoConverter::class)
+    val characters: String,
 
     @SerializedName("url")
     @Expose
-    val url: String? = null,
+    val url: String,
 
     @SerializedName("created")
     @Expose
-    val created: String? = null
+    val created: String
 )

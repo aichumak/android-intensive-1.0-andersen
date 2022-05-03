@@ -10,11 +10,11 @@ import com.example.rickandmorty.pojo.LocationsInfoListOfResult
 @Dao
 interface LocationInfoDao {
     @Query("SELECT * FROM locations_list ORDER BY id")
-    fun getLocationsInfoList(): List<LocationsInfoListOfResult>
+    fun getLocationsInfoList(): List<LocationInfo>
 
     @Query("SELECT * FROM locations_list WHERE id== :locationId")
     fun getLocationInfo(locationId: Int): LocationInfo
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertLocationsInfo(locationsInfoList: List<LocationsInfoListOfResult>)
+    fun insertLocationsInfo(locationsInfoList: List<LocationInfo>)
 }

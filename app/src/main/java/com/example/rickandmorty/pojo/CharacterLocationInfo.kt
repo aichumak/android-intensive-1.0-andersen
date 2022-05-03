@@ -7,9 +7,9 @@ import com.google.gson.annotations.SerializedName
 data class CharacterLocationInfo(
     @SerializedName("name")
     @Expose
-    val name: String? = null,
+    val name: String,
 
     @SerializedName("url")
     @Expose
-    val url: String? = null
+    val url: String
 )

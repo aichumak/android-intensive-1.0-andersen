@@ -2,6 +2,7 @@ package com.example.rickandmorty.pojo
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -10,49 +11,52 @@ data class CharacterInfo(
     @PrimaryKey
     @SerializedName("id")
     @Expose
-    val id: Int? = null,
+    val id: Int,
 
     @SerializedName("name")
     @Expose
-    val name: String? = null,
+    val name: String,
 
     @SerializedName("status")
     @Expose
-    val status: String? = null,
+    val status: String,
 
     @SerializedName("species")
     @Expose
-    val species: String? = null,
+    val species: String,
 
     @SerializedName("type")
     @Expose
-    val type: String? = null,
+    val type: String,
 
     @SerializedName("gender")
     @Expose
-    val gender: String? = null,
+    val gender: String,
 
     @SerializedName("origin")
     @Expose
-    val origin: List<CharacterOriginInfo>? = null,
+    @TypeConverters(CharacterOriginInfoConverter::class)
+    val origin: String,
 
     @SerializedName("location")
     @Expose
-    val location: List<CharacterLocationInfo>? = null,
+    @TypeConverters(CharacterLocationInfoConverter::class)
+    val location: String,
 
     @SerializedName("image")
     @Expose
-    val image: String? = null,
+    val image: String,
 
     @SerializedName("episode")
     @Expose
-    val episode: List<String>? = null,
+    @TypeConverters(CharacterEpisodeInfoConverter::class)
+    val episode: String,
 
     @SerializedName("url")
     @Expose
-    val url: String? = null,
+    val url: String,
 
     @SerializedName("created")
     @Expose
-    val created: String? = null
+    val created: String
 )

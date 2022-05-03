@@ -10,11 +10,11 @@ import com.example.rickandmorty.pojo.EpisodesInfoListOfResult
 @Dao
 interface EpisodeInfoDao {
     @Query("SELECT * FROM episodes_list ORDER BY id")
-    fun getEpisodesInfoList(): List<EpisodesInfoListOfResult>
+    fun getEpisodesInfoList(): List<EpisodeInfo>
 
     @Query("SELECT * FROM episodes_list WHERE id== :episodeId")
     fun getEpisodeInfo(episodeId: Int): EpisodeInfo
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertEpisodesInfo(episodesInfoList: List<EpisodesInfoListOfResult>)
+    fun insertEpisodesInfo(episodesInfoList: List<EpisodeInfo>)
 }
