@@ -25,7 +25,7 @@ class CharactersInfoListPagingSource(private val charactersApiService: Character
                 nextKey = currentPage.plus(1)
             )
         } catch (e: Exception) {
-            LoadResult.Error(e)
+            LoadResult.Error(throwable = e)
         }
     }
 }
