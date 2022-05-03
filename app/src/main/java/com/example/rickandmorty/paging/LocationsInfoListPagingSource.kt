@@ -25,7 +25,7 @@ class LocationsInfoListPagingSource(private val locationsApiService: LocationsAp
                 nextKey = currentPage.plus(1)
             )
         } catch (e: Exception) {
-            LoadResult.Error(e)
+            LoadResult.Error(throwable = e)
         }
     }
 }

@@ -12,7 +12,7 @@ class EpisodesInfoListPagingSource(private val episodesApiService: EpisodesApiSe
         return null
     }
 
-    override suspend fun load(params: PagingSource.LoadParams<Int>): PagingSource.LoadResult<Int, EpisodeInfo> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, EpisodeInfo> {
         return try {
             val currentPage = params.key ?: 1
             val response = episodesApiService.getEpisodesInfoList(currentPage)
@@ -20,13 +20,13 @@ class EpisodesInfoListPagingSource(private val episodesApiService: EpisodesApiSe
             val data = response.body()?.results ?: emptyList()
             responseData.addAll(data)
 
-            PagingSource.LoadResult.Page(
+            LoadResult.Page(
                 data = responseData,
                 prevKey = if (currentPage == 1) null else -1,
                 nextKey = currentPage.plus(1)
             )
         } catch (e: Exception) {
-            PagingSource.LoadResult.Error(e)
+            LoadResult.Error(throwable = e)
         }
     }
 }
