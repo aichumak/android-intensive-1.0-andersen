@@ -69,4 +69,6 @@ dependencies {
     implementation("androidx.paging:paging-runtime:$paging_version")
     // optional - RxJava2 support
     implementation("androidx.paging:paging-rxjava2:$paging_version")
+
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }

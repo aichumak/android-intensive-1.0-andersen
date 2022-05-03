@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class LocationsInfoListOfResult(
-    @SerializedName("results")
-    @Expose
-    val results: JsonArray? = null
+//    @SerializedName("results")
+//    @Expose
+    val results: List<LocationInfo>
 )
