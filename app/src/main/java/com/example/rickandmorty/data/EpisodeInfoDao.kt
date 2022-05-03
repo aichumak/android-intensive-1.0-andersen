@@ -5,12 +5,15 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.rickandmorty.pojo.EpisodeInfo
-import com.example.rickandmorty.pojo.EpisodesInfoListOfResult
 
 @Dao
 interface EpisodeInfoDao {
-    @Query("SELECT * FROM episodes_list ORDER BY id")
-    fun getEpisodesInfoList(): List<EpisodeInfo>
+    @Query(
+        "SELECT * FROM episodes_list ORDER BY id" +
+                "LIMIT :limit" +
+                "OFFSET :offset"
+    )
+    fun getEpisodesInfoList(limit: Int, offset: Int): List<EpisodeInfo>
 
     @Query("SELECT * FROM episodes_list WHERE id== :episodeId")
     fun getEpisodeInfo(episodeId: Int): EpisodeInfo

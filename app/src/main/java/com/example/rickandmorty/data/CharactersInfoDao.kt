@@ -5,12 +5,15 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.rickandmorty.pojo.CharacterInfo
-import com.example.rickandmorty.pojo.CharactersInfoListOfResult
 
 @Dao
 interface CharactersInfoDao {
-    @Query("SELECT * FROM characters_list ORDER BY id")
-    fun getCharactersInfoList(): List<CharacterInfo>
+    @Query(
+        "SELECT * FROM characters_list ORDER BY id" +
+                "LIMIT :limit" +
+                "OFFSET :offset"
+    )
+    fun getCharactersInfoList(limit: Int, offset: Int): List<CharacterInfo>
 
     @Query("SELECT * FROM characters_list WHERE id== :characterId")
     fun getCharacterInfo(characterId: Int): CharacterInfo
