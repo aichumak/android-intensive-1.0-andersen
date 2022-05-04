@@ -4,33 +4,35 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.rickandmorty.databinding.FragmentCharacterListBinding
-import com.example.rickandmorty.pojo.CharacterInfo
+import androidx.recyclerview.widget.RecyclerView
+import com.example.rickandmorty.databinding.FragmentEpisodeListBinding
+import com.example.rickandmorty.pojo.EpisodeInfo
 
-class CharacterAdapter : PagingDataAdapter<CharacterInfo,
-        CharacterAdapter.ImageViewHolder>(diffCallback) {
+class EpisodesListAdapter : PagingDataAdapter<EpisodeInfo,
+        EpisodesListAdapter.ImageViewHolder>(diffCallback) {
+
 
     inner class ImageViewHolder(
-        val binding: FragmentCharacterListBinding
+        val binding: FragmentEpisodeListBinding
     ) :
-        ViewHolder(binding.root)
+        RecyclerView.ViewHolder(binding.root)
 
     companion object {
-        val diffCallback = object : DiffUtil.ItemCallback<CharacterInfo>() {
-            override fun areItemsTheSame(oldItem: CharacterInfo, newItem: CharacterInfo): Boolean {
+        val diffCallback = object : DiffUtil.ItemCallback<EpisodeInfo>() {
+            override fun areItemsTheSame(oldItem: EpisodeInfo, newItem: EpisodeInfo): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: CharacterInfo, newItem: CharacterInfo): Boolean {
+            override fun areContentsTheSame(oldItem: EpisodeInfo, newItem: EpisodeInfo): Boolean {
                 return oldItem == newItem
             }
         }
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         return ImageViewHolder(
-            FragmentCharacterListBinding.inflate(
+            FragmentEpisodeListBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
             )
@@ -49,10 +51,10 @@ class CharacterAdapter : PagingDataAdapter<CharacterInfo,
 //                imageView.load(imageLink) {
 //                    crossfade(true)
 //                    crossfade(1000)
-                }
             }
         }
-
     }
+
+}
 
 

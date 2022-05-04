@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.FragmentLocationListBinding
 import com.example.rickandmorty.pojo.LocationInfo
 
-class LocationAdapter : PagingDataAdapter<LocationInfo,
-        LocationAdapter.ImageViewHolder>(diffCallback) {
+class LocationsListAdapter : PagingDataAdapter<LocationInfo,
+        LocationsListAdapter.ImageViewHolder>(diffCallback) {
 
 
     inner class ImageViewHolder(
