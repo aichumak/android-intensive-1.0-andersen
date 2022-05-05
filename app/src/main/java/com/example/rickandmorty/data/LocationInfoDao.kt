@@ -4,7 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.rickandmorty.pojo.LocationInfo
+import com.example.rickandmorty.data.pojo.LocationInfo
+import com.example.rickandmorty.data.pojo.LocationInfoModel
 
 @Dao
 interface LocationInfoDao {
@@ -13,11 +14,11 @@ interface LocationInfoDao {
                 "LIMIT :limit " +
                 "OFFSET :offset"
     )
-    fun getLocationsInfoList(limit: Int, offset: Int): List<LocationInfo>
+    fun getLocationsInfoList(limit: Int, offset: Int): List<LocationInfoModel>
 
     @Query("SELECT * FROM locations_list WHERE id== :locationId")
-    fun getLocationInfo(locationId: Int): LocationInfo
+    fun getLocationInfo(locationId: Int): LocationInfoModel
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertLocationsInfo(locationsInfoList: List<LocationInfo>)
+    fun insertLocationsInfo(locationsInfoList: List<LocationInfoModel>)
 }

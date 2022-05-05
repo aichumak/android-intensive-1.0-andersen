@@ -1,10 +1,11 @@
 package com.example.rickandmorty.domain.characters
 
-import android.content.Context
-import com.example.rickandmorty.pojo.CharacterInfo
+import androidx.lifecycle.LiveData
+import com.example.rickandmorty.data.pojo.CharacterInfoModel
 
 interface CharactersRepository {
-    fun getAllCharacters(limit: Int, offset: Int): List<CharacterInfo>
-    fun getSingleCharacter(id: Int): CharacterInfo
-    fun getFilteredCharacter()
+    suspend fun getAllCharacters(limit: Int, offset: Int): LiveData<List<CharacterObject>>
+    suspend fun getCharacter(id: Int): CharacterObject
+    suspend fun addCharacter(character: CharacterInfoModel)
+    suspend fun getFilteredCharacter()
 }

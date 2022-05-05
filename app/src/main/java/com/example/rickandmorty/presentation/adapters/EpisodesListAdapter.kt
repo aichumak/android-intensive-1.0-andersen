@@ -6,7 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.FragmentEpisodeListBinding
-import com.example.rickandmorty.pojo.EpisodeInfo
+import com.example.rickandmorty.data.pojo.EpisodeInfo
 
 class EpisodesListAdapter : PagingDataAdapter<EpisodeInfo,
         EpisodesListAdapter.ImageViewHolder>(diffCallback) {

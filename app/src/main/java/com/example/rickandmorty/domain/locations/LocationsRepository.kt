@@ -1,10 +1,11 @@
 package com.example.rickandmorty.domain.locations
 
-import com.example.rickandmorty.pojo.CharacterInfo
-import com.example.rickandmorty.pojo.LocationInfo
+import com.example.rickandmorty.data.pojo.CharacterInfo
+import com.example.rickandmorty.data.pojo.LocationInfo
+import com.example.rickandmorty.data.pojo.LocationInfoModel
 
 interface LocationsRepository {
-    fun getAllLocations(limit: Int, offset: Int): List<LocationInfo>
-    fun getSingleLocation(id: Int): LocationInfo
+    fun getAllLocations(limit: Int, offset: Int): List<LocationInfoModel>
+    fun getSingleLocation(id: Int): LocationInfoModel
     fun getFilteredLocations()
 }

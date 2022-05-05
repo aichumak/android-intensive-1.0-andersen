@@ -1,9 +1,8 @@
-package com.example.rickandmorty.pojo
+package com.example.rickandmorty.data.pojo
 
 import androidx.room.TypeConverter
 
-class CharacterEpisodeInfoConverter {
-
+class LocationResidentInfoConverter {
     @TypeConverter
     fun fromArrayList(arrayList: List<String>): String {
         return arrayList.toString()

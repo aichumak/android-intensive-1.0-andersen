@@ -3,7 +3,7 @@ package com.example.rickandmorty.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.rickandmorty.api.EpisodesApiService
-import com.example.rickandmorty.pojo.EpisodeInfo
+import com.example.rickandmorty.data.pojo.EpisodeInfo
 
 class EpisodesInfoListPagingSource(private val episodesApiService: EpisodesApiService) :
     PagingSource<Int, EpisodeInfo>() {

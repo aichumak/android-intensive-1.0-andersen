@@ -6,7 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.FragmentLocationListBinding
-import com.example.rickandmorty.pojo.LocationInfo
+import com.example.rickandmorty.data.pojo.LocationInfo
 
 class LocationsListAdapter : PagingDataAdapter<LocationInfo,
         LocationsListAdapter.ImageViewHolder>(diffCallback) {

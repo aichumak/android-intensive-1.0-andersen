@@ -1,7 +1,7 @@
 package com.example.rickandmorty.api
 
-import com.example.rickandmorty.pojo.EpisodeInfo
-import com.example.rickandmorty.pojo.EpisodesInfoListOfResult
+import com.example.rickandmorty.data.pojo.EpisodeInfo
+import com.example.rickandmorty.data.pojo.EpisodesInfoListOfResult
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET

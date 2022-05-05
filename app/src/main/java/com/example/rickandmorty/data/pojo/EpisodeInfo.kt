@@ -1,4 +1,4 @@
-package com.example.rickandmorty.pojo
+package com.example.rickandmorty.data.pojo
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

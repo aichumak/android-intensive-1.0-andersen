@@ -17,7 +17,7 @@ class FragmentActivity : AppCompatActivity(), FragmentNavigator {
                     fragment,
                     NavigationFragment.FRAGMENT_NAVIGATION
                 )
-                //addToBackStack(NavigationFragment.FRAGMENT_NAVIGATION)
+                addToBackStack(NavigationFragment.FRAGMENT_NAVIGATION)
                 commit()
             }
         } else {

@@ -1,4 +1,4 @@
-package com.example.rickandmorty.pojo
+package com.example.rickandmorty.data.pojo
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,8 +7,8 @@ import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "locations_list")
-data class LocationInfo(
+@Entity(tableName = "episodes_list")
+data class EpisodeInfoModel(
     @PrimaryKey
     @SerializedName("id")
     @Expose
@@ -18,18 +18,18 @@ data class LocationInfo(
     @Expose
     val name: String,
 
-    @SerializedName("type")
+    @SerializedName("air_date")
     @Expose
-    val type: String,
+    val airDate: String,
 
-    @SerializedName("dimension")
+    @SerializedName("episode")
     @Expose
-    val dimension: String,
+    val episode: String,
 
-    @SerializedName("residents")
+    @SerializedName("characters")
     @Expose
-    @TypeConverters(LocationResidentInfoConverter::class)
-    val residents: String,
+    @TypeConverters(EpisodeCharacterInfoConverter::class)
+    val characters: String,
 
     @SerializedName("url")
     @Expose

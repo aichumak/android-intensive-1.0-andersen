@@ -6,7 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.rickandmorty.databinding.FragmentCharacterDetailsBinding
-import com.example.rickandmorty.pojo.CharacterInfo
+import com.example.rickandmorty.data.pojo.CharacterInfo
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
