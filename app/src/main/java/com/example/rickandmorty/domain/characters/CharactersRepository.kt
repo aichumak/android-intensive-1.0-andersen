@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import com.example.rickandmorty.data.pojo.CharacterInfoModel
 
 interface CharactersRepository {
-    suspend fun getAllCharacters(limit: Int, offset: Int): LiveData<List<CharacterObject>>
-    suspend fun getCharacter(id: Int): CharacterObject
-    suspend fun addCharacter(character: CharacterInfoModel)
-    suspend fun getFilteredCharacter()
+     fun getAllCharacters(limit: Int, offset: Int): LiveData<List<CharacterObject>>
+     fun getCharacter(id: Int): CharacterObject
+     fun addCharacter(character: CharacterInfoModel)
+     fun getFilteredCharacter()
 }

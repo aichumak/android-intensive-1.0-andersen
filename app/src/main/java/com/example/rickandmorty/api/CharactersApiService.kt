@@ -9,12 +9,12 @@ import retrofit2.http.Query
 
 interface CharactersApiService {
     @GET("character")
-    suspend fun getCharacterInfo(
+     fun getCharacterInfo(
         @Query(QUERY_PARAM_ID) id: Int
     ): Single<CharacterInfoModel>
 
     @GET("character")
-    suspend fun getCharactersInfoList(
+     fun getCharactersInfoList(
         @Query("page") page: Int
     ): Response<CharactersInfoListOfResult>
 

@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class CharactersInfoListOfResult(
-    @SerializedName("results")
-    @Expose
+    //@SerializedName("results")
+    //@Expose
     val results: List<CharacterInfoModel>
 )

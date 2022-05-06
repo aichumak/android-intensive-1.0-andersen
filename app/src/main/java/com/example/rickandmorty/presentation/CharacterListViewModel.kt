@@ -23,9 +23,10 @@ class CharacterListViewModel(application: Application) : AndroidViewModel(applic
     val charactersList = getCharacters()
 
     private fun getCharacters(): String {
-        //var list: LiveData<List<CharacterObject>>
+        var list: Any? =null
         viewModelScope.launch {
-            val list = getAllCharactersUseCase.getAllCharacters(0, 20)
+            val list = getAllCharactersUseCase.getAllCharacters(1, 20)
+            val a = 0
         }
         return ""
     }

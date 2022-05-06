@@ -1,7 +1,7 @@
 package com.example.rickandmorty.domain.characters
 
 class GetFilteredCharacterUseCase(private val charactersRepository: CharactersRepository) {
-    suspend fun getFilteredCharacter() {
+     fun getFilteredCharacter() {
         charactersRepository.getFilteredCharacter()
     }
 }

@@ -14,8 +14,13 @@ class CharactersRepositoryImpl(context: Context): CharactersRepository {
     private val mapper = CharactersListMapper()
     private val apiFactory = CharactersApiFactory
 
-    override suspend fun getAllCharacters(limit: Int, offset: Int): LiveData<List<CharacterObject>> {
+    override fun getAllCharacters(limit: Int, offset: Int): LiveData<List<CharacterObject>> {
+        try {
         val characters = apiFactory.apiService.getCharactersInfoList(limit)
+
+        } catch (e: Exception ){
+            val df= e
+        }
 
         val result = charactersInfoDao.getCharactersInfoList(limit, offset)
         result.value?.forEach {
@@ -26,16 +31,16 @@ class CharactersRepositoryImpl(context: Context): CharactersRepository {
         }
     }
 
-    override suspend fun getCharacter(id: Int): CharacterObject {
+    override fun getCharacter(id: Int): CharacterObject {
         val character = charactersInfoDao.getCharacterInfo(id)
         return mapper.mapDataBaseModelToEntity(character)
     }
 
-    override suspend fun addCharacter(character: CharacterInfoModel) {
+    override fun addCharacter(character: CharacterInfoModel) {
         charactersInfoDao.addCharacterInfoModel(character)
     }
 
-    override suspend fun getFilteredCharacter() {
+    override fun getFilteredCharacter() {
         TODO("Not yet implemented")
     }
 }

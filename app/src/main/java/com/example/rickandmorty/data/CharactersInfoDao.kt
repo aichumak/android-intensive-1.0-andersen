@@ -18,8 +18,8 @@ interface CharactersInfoDao {
     fun getCharactersInfoList(limit: Int, offset: Int): LiveData<List<CharacterInfoModel>>
 
     @Query("SELECT * FROM characters_list WHERE id== :characterId")
-    suspend fun getCharacterInfo(characterId: Int): CharacterInfoModel
+    fun getCharacterInfo(characterId: Int): CharacterInfoModel
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addCharacterInfoModel(characterInfoModel: CharacterInfoModel)
+     fun addCharacterInfoModel(characterInfoModel: CharacterInfoModel)
 }
