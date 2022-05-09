@@ -16,6 +16,11 @@ interface EpisodeInfoDao {
     )
     fun getEpisodesInfoList(limit: Int, offset: Int): List<EpisodeInfoModel>
 
+    @Query(
+        "SELECT * FROM episodes_list ORDER BY id "
+    )
+    fun getEpisodesInfoListTest(): List<EpisodeInfoModel>
+
     @Query("SELECT * FROM episodes_list WHERE id== :episodeId")
     fun getEpisodeInfo(episodeId: Int): EpisodeInfoModel
 

@@ -1,5 +1,7 @@
 package com.example.rickandmorty.data
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.map
 import com.example.rickandmorty.data.pojo.CharacterInfoModel
 import com.example.rickandmorty.domain.characters.CharacterObject
 import com.example.rickandmorty.domain.characters.CharacterLocation
@@ -37,8 +39,8 @@ class CharactersListMapper {
         created = character.created
     )
 
-    fun mapListDataBaseModelToListEntity(list: List<CharacterInfoModel>) = list.map {
-        mapDataBaseModelToEntity(it)
+    fun mapListDataBaseModelToListEntity(liveDataList: LiveData<List<CharacterInfoModel>>) = liveDataList.map {
+        it.map {character -> mapDataBaseModelToEntity(character)}
     }
 
 

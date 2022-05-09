@@ -20,16 +20,17 @@ class CharacterListViewModel(application: Application) : AndroidViewModel(applic
     private val getFilteredCharacterUseCase = GetFilteredCharacterUseCase(repository)
 
 
-    val charactersList = getCharacters()
+    val charactersList = getAllCharactersUseCase.getAllCharacters(5, 20)
 
-    private fun getCharacters(): String {
-        var list: Any? =null
-        viewModelScope.launch {
-            val list = getAllCharactersUseCase.getAllCharacters(1, 20)
-            val a = 0
-        }
-        return ""
-    }
+
+//    private fun getCharacters(): String {
+//        var list: Any? =null
+//        viewModelScope.launch {
+//            val list = getAllCharactersUseCase.getAllCharacters(1, 20)
+//            val a = 0
+//        }
+//        return ""
+//    }
 
 
 

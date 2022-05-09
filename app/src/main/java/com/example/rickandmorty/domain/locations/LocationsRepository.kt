@@ -1,7 +1,5 @@
 package com.example.rickandmorty.domain.locations
 
-import com.example.rickandmorty.data.pojo.CharacterInfo
-import com.example.rickandmorty.data.pojo.LocationInfo
 import com.example.rickandmorty.data.pojo.LocationInfoModel
 
 interface LocationsRepository {
