@@ -19,7 +19,7 @@ class CharactersListMapper {
         origin = characterObject.origin.toString(),
         location = characterObject.location.toString(),
         image = characterObject.image,
-        episode = characterObject.episode.toString(),
+        episode = characterObject.episode.toString().replace("[", "").replace("]", ""),
         url = characterObject.url,
         created = characterObject.created
     )
@@ -34,7 +34,7 @@ class CharactersListMapper {
         origin = stringToOriginObject(character.origin),
         location = stringToLocationObject(character.location),
         image = character.image,
-        episode = arrayListOf(character.episode),
+        episode = character.episode.split(",").toTypedArray(),
         url = character.url,
         created = character.created
     )
@@ -43,14 +43,16 @@ class CharactersListMapper {
         it.map {character -> mapDataBaseModelToEntity(character)}
     }
 
+    fun mapListEntityToListDataBaseModel(entityList: List<CharacterObject>) = entityList.map {
+        character -> mapEntityToDataBaseModel(character)}
 
     private fun stringToOriginObject(string: String): CharacterOrigin {
-        val array= arrayListOf(string)
+        val array= string.split(",").toTypedArray()
         return CharacterOrigin(array[0], array[1])
     }
 
     private fun stringToLocationObject(string: String): CharacterLocation {
-        val array= arrayListOf(string)
+        val array= string.split(",").toTypedArray()
         return CharacterLocation(array[0], array[1])
     }
 

@@ -14,7 +14,7 @@ class CharactersInfoListPagingSource(private val charactersRepositoryImpl: Chara
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CharacterObject> {
         return try {
             val currentPage = params.key ?: 1
-            val response = charactersRepositoryImpl.getAllCharacters(currentPage, 20)
+            //val response = charactersRepositoryImpl.getAllCharacters(currentPage, 20)
             val responseData = mutableListOf<CharacterObject>()
             //val data = response.body()?.results ?: emptyList()
             //responseData.addAll(data)

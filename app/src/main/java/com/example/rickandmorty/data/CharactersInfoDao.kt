@@ -10,20 +10,13 @@ import com.example.rickandmorty.data.pojo.CharacterInfoModel
 @Dao
 interface CharactersInfoDao {
     @Query(
-        "SELECT * FROM characters_list ORDER BY id " +
-                "LIMIT :limit " +
-                "OFFSET :offset"
+        "SELECT * FROM characters_list ORDER BY id"
     )
-    fun getCharactersInfoList(limit: Int, offset: Int): LiveData<List<CharacterInfoModel>>
-
-    @Query(
-        "SELECT * FROM characters_list ORDER BY id "
-    )
-    fun getCharactersInfoListTest(): LiveData<List<CharacterInfoModel>>
+    fun getCharactersInfoList(): LiveData<List<CharacterInfoModel>>
 
     @Query("SELECT * FROM characters_list WHERE id== :characterId")
     fun getCharacterInfo(characterId: Int): CharacterInfoModel
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun addCharacterInfoModel(characterInfoModel: CharacterInfoModel)
+     fun addCharacterList(characterList: List<CharacterInfoModel>)
 }
