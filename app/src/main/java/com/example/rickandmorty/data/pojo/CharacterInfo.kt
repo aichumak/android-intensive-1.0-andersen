@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class CharacterInfo(
+
     @SerializedName("count")
     @Expose
     val count: Int,
