@@ -17,8 +17,8 @@ class EpisodesInfoListPagingSource(private val episodesApiService: EpisodesApiSe
             val currentPage = params.key ?: 1
             val response = episodesApiService.getEpisodesInfoList(currentPage)
             val responseData = mutableListOf<EpisodeInfo>()
-            val data = response.body()?.results ?: emptyList()
-            responseData.addAll(data)
+            //val data = response.body()?.results ?: emptyList()
+            //responseData.addAll(data)
 
             LoadResult.Page(
                 data = responseData,

@@ -10,7 +10,7 @@ class EpisodesListMapper {
     private fun mapEntityToDataBaseModel(episodeObject: EpisodeObject) = EpisodeInfoModel(
         id = episodeObject.id,
         name = episodeObject.name,
-        airDate = episodeObject.airDate,
+        air_date = episodeObject.air_date,
         episode = episodeObject.episode,
         characters = episodeObject.characters.toString().replace("[", "").replace("]", ""),
         url = episodeObject.url,
@@ -20,7 +20,7 @@ class EpisodesListMapper {
     fun mapDataBaseModelToEntity(episodeInfoModel: EpisodeInfoModel) = EpisodeObject(
         id = episodeInfoModel.id,
         name = episodeInfoModel.name,
-        airDate = episodeInfoModel.airDate,
+        air_date = episodeInfoModel.air_date,
         episode = episodeInfoModel.episode,
         characters = episodeInfoModel.characters.trim().split(",").toTypedArray(),
         url = episodeInfoModel.url,

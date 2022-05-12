@@ -16,8 +16,8 @@ class LocationsInfoListPagingSource(private val locationsApiService: LocationsAp
             val currentPage = params.key ?: 1
             val response = locationsApiService.getLocationsInfoList(currentPage)
             val responseData = mutableListOf<LocationInfo>()
-            val data = response.body()?.results ?: emptyList()
-            responseData.addAll(data)
+            //val data = response.body()?.results ?: emptyList()
+            //responseData.addAll(data)
 
             LoadResult.Page(
                 data = responseData,

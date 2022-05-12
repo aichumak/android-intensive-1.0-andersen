@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.FragmentEpisodeListBinding
 import com.example.rickandmorty.data.pojo.EpisodeInfo
+import com.example.rickandmorty.domain.episodes.EpisodeObject
 
-class EpisodesListAdapter : PagingDataAdapter<EpisodeInfo,
+class EpisodesListAdapter : PagingDataAdapter<EpisodeObject,
         EpisodesListAdapter.ImageViewHolder>(diffCallback) {
 
 
@@ -18,12 +19,12 @@ class EpisodesListAdapter : PagingDataAdapter<EpisodeInfo,
         RecyclerView.ViewHolder(binding.root)
 
     companion object {
-        val diffCallback = object : DiffUtil.ItemCallback<EpisodeInfo>() {
-            override fun areItemsTheSame(oldItem: EpisodeInfo, newItem: EpisodeInfo): Boolean {
+        val diffCallback = object : DiffUtil.ItemCallback<EpisodeObject>() {
+            override fun areItemsTheSame(oldItem: EpisodeObject, newItem: EpisodeObject): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: EpisodeInfo, newItem: EpisodeInfo): Boolean {
+            override fun areContentsTheSame(oldItem: EpisodeObject, newItem: EpisodeObject): Boolean {
                 return oldItem == newItem
             }
         }

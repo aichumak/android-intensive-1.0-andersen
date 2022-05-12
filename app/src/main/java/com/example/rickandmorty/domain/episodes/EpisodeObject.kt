@@ -1,9 +1,9 @@
 package com.example.rickandmorty.domain.episodes
 
-class EpisodeObject(
+data class EpisodeObject(
     val id: Int,
     val name: String,
-    val airDate: String,
+    val air_date: String,
     val episode: String,
     val characters: Array<String>,
     val url: String,

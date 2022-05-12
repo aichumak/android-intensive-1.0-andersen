@@ -12,8 +12,8 @@ class CharacterListViewModel(application: Application) : AndroidViewModel(applic
     private val compositeDisposable = CompositeDisposable()
     val repository = CharactersRepositoryImpl(application, compositeDisposable)
     private val getAllCharactersUseCase = GetAllCharactersUseCase(repository)
-    private val getSingleCharacterUseCase = GetCharacterUseCase(repository)
-    private val getFilteredCharacterUseCase = GetFilteredCharacterUseCase(repository)
+    //private val getSingleCharacterUseCase = GetCharacterUseCase(repository)
+    //private val getFilteredCharacterUseCase = GetFilteredCharacterUseCase(repository)
 
     val charactersList = getAllCharactersUseCase.getAllCharacters()
 

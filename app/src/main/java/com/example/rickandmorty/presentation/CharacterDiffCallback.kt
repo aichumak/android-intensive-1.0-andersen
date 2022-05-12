@@ -5,16 +5,16 @@ import com.example.rickandmorty.domain.characters.CharacterObject
 
 class CharacterDiffCallback : DiffUtil.ItemCallback<CharacterObject>() {
     override fun areItemsTheSame(
-        oldContact: CharacterObject,
-        newContact: CharacterObject
+        oldCharacter: CharacterObject,
+        newCharacter: CharacterObject
     ): Boolean {
-        return oldContact.id == newContact.id
+        return oldCharacter.id == newCharacter.id
     }
 
     override fun areContentsTheSame(
-        oldContact: CharacterObject,
-        newContact: CharacterObject
+        oldCharacter: CharacterObject,
+        newCharacter: CharacterObject
     ): Boolean {
-        return oldContact == newContact
+        return oldCharacter == newCharacter
     }
 }

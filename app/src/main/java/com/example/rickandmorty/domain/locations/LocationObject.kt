@@ -1,6 +1,6 @@
 package com.example.rickandmorty.domain.locations
 
-class LocationObject(
+data class LocationObject(
     val id: Int,
     val name: String,
     val type: String,

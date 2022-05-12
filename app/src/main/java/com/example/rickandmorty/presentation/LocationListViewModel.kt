@@ -1,16 +1,23 @@
 package com.example.rickandmorty.presentation
 
-import android.content.Context
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import com.example.rickandmorty.data.LocationsRepositoryImpl
 import com.example.rickandmorty.domain.locations.GetAllLocationsUseCase
-import com.example.rickandmorty.domain.locations.GetFilteredLocationUseCase
-import com.example.rickandmorty.domain.locations.GetSingleLocationUseCase
+import io.reactivex.disposables.CompositeDisposable
 
-class LocationListViewModel(context: Context) : ViewModel() {
-    private val repository = LocationsRepositoryImpl(context)
+class LocationListViewModel(application: Application) : AndroidViewModel(application) {
+    private val compositeDisposable = CompositeDisposable()
+    val repository = LocationsRepositoryImpl(application, compositeDisposable)
     private val getAllLocationsUseCase = GetAllLocationsUseCase(repository)
-    private val getSingleLocationUseCase = GetSingleLocationUseCase(repository)
-    private val getFilteredLocationUseCase = GetFilteredLocationUseCase(repository)
+    //private val getSingleLocationUseCase = GetSingleLocationUseCase(repository)
+    //private val getFilteredLocationUseCase = GetFilteredLocationUseCase(repository)
+
+    val locationsList = getAllLocationsUseCase.getAllLocations()
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.dispose()
+    }
 
 }

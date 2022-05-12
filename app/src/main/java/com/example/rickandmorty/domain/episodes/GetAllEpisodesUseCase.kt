@@ -1,7 +1,9 @@
 package com.example.rickandmorty.domain.episodes
 
+import androidx.lifecycle.LiveData
+
 class GetAllEpisodesUseCase(private val episodesRepository: EpisodesRepository) {
-    fun getAllEpisodes(limit: Int, offset: Int) {
-        episodesRepository.getAllEpisodes(limit, offset)
+    fun getAllEpisodes(): LiveData<List<EpisodeObject>> {
+        return episodesRepository.getAllEpisodes()
     }
 }

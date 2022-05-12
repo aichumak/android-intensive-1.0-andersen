@@ -20,7 +20,7 @@ data class EpisodeInfoModel(
 
     @SerializedName("air_date")
     @Expose
-    val airDate: String,
+    val air_date: String,
 
     @SerializedName("episode")
     @Expose
@@ -28,7 +28,6 @@ data class EpisodeInfoModel(
 
     @SerializedName("characters")
     @Expose
-    @TypeConverters(EpisodeCharacterInfoConverter::class)
     val characters: String,
 
     @SerializedName("url")
