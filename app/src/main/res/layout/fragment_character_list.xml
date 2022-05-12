@@ -16,7 +16,7 @@
         android:contentDescription="TODO" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_episode_list"
+        android:id="@+id/rv_character_list"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -24,6 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:background="#3A4C72"
+        android:padding="8dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

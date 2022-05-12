@@ -3,7 +3,7 @@ package com.example.rickandmorty.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.rickandmorty.api.LocationsApiService
-import com.example.rickandmorty.pojo.LocationInfo
+import com.example.rickandmorty.data.pojo.LocationInfo
 
 class LocationsInfoListPagingSource(private val locationsApiService: LocationsApiService) :
     PagingSource<Int, LocationInfo>() {
@@ -16,8 +16,8 @@ class LocationsInfoListPagingSource(private val locationsApiService: LocationsAp
             val currentPage = params.key ?: 1
             val response = locationsApiService.getLocationsInfoList(currentPage)
             val responseData = mutableListOf<LocationInfo>()
-            val data = response.body()?.results ?: emptyList()
-            responseData.addAll(data)
+            //val data = response.body()?.results ?: emptyList()
+            //responseData.addAll(data)
 
             LoadResult.Page(
                 data = responseData,

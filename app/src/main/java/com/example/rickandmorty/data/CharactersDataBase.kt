@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.rickandmorty.pojo.CharacterInfo
+import com.example.rickandmorty.data.pojo.CharacterInfoModel
 
-@Database([CharacterInfo::class], version = 1, exportSchema = false)
+@Database([CharacterInfoModel::class], version = 1, exportSchema = false)
 abstract class CharactersDataBase : RoomDatabase() {
     companion object {
         private var db: CharactersDataBase? = null

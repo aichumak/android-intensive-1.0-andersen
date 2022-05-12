@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/menu_bottom_navigation">
-
-    <Fragment
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
         android:id="@+id/navigation_characters_list"
-        android:name="FourthFragment"
-        android:label="@string/characters"
-        tools:layout="@layout/fragment_character_list" />
-
-    <Fragment
+        android:title="@string/characters"/>
+    <item
         android:id="@+id/navigation_locations_list"
-        android:name="FourthFragment"
-        android:label="@string/locations"
-        tools:layout="@layout/fragment_location_list" />
-
-    <Fragment
+        android:title="@string/locations"/>
+    <item
         android:id="@+id/navigation_episodes_list"
-        android:name="FourthFragment"
-        android:label="@string/episodes"
-        tools:layout="@layout/fragment_episode_list" />
-
-</navigation>
+        android:title="@string/episodes"/>
+</menu>

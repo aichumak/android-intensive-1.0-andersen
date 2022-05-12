@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.rickandmorty.pojo.EpisodeInfo
+import com.example.rickandmorty.data.pojo.EpisodeInfo
+import com.example.rickandmorty.data.pojo.EpisodeInfoModel
 
-@Database([EpisodeInfo::class], version = 1, exportSchema = false)
+@Database([EpisodeInfoModel::class], version = 1, exportSchema = false)
 abstract class EpisodesDataBase : RoomDatabase() {
     companion object {
         private var db: EpisodesDataBase? = null
