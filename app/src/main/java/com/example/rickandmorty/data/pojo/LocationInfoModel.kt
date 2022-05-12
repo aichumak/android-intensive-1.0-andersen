@@ -28,7 +28,6 @@ data class LocationInfoModel(
 
     @SerializedName("residents")
     @Expose
-    @TypeConverters(LocationResidentInfoConverter::class)
     val residents: String,
 
     @SerializedName("url")

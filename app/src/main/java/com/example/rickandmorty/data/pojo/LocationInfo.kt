@@ -7,35 +7,20 @@ import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "locations_list")
 data class LocationInfo(
-    @PrimaryKey
-    @SerializedName("id")
+    @SerializedName("count")
     @Expose
-    val id: Int,
+    val count: Int,
 
-    @SerializedName("name")
+    @SerializedName("pages")
     @Expose
-    val name: String,
+    val pages: Int,
 
-    @SerializedName("type")
+    @SerializedName("next")
     @Expose
-    val type: String,
+    val next: String,
 
-    @SerializedName("dimension")
+    @SerializedName("prev")
     @Expose
-    val dimension: String,
-
-    @SerializedName("residents")
-    @Expose
-    @TypeConverters(LocationResidentInfoConverter::class)
-    val residents: String,
-
-    @SerializedName("url")
-    @Expose
-    val url: String,
-
-    @SerializedName("created")
-    @Expose
-    val created: String
+    val prev: String
 )

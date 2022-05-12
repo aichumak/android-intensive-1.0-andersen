@@ -1,9 +1,11 @@
 package com.example.rickandmorty.domain.locations
 
+import androidx.lifecycle.LiveData
 import com.example.rickandmorty.data.pojo.LocationInfoModel
 
 interface LocationsRepository {
-    fun getAllLocations(limit: Int, offset: Int): List<LocationInfoModel>
-    fun getSingleLocation(id: Int): LocationInfoModel
+    fun addLocationList(locationList: List<LocationInfoModel>)
+    fun getAllLocations(): LiveData<List<LocationObject>>
+    fun getSingleLocation(id: Int): LocationObject
     fun getFilteredLocations()
 }

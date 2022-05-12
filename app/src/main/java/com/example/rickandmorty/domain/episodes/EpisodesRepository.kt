@@ -1,10 +1,11 @@
 package com.example.rickandmorty.domain.episodes
 
-import com.example.rickandmorty.data.pojo.EpisodeInfo
+import androidx.lifecycle.LiveData
 import com.example.rickandmorty.data.pojo.EpisodeInfoModel
 
 interface EpisodesRepository {
-    fun getAllEpisodes(limit: Int, offset: Int): List<EpisodeInfoModel>
-    fun getSingleEpisode(id: Int): EpisodeInfoModel
+    fun addEpisodeList(episodeList: List<EpisodeInfoModel>)
+    fun getAllEpisodes(): LiveData<List<EpisodeObject>>
+    fun getSingleEpisode(id: Int): EpisodeObject
     fun getFilteredEpisodes()
 }

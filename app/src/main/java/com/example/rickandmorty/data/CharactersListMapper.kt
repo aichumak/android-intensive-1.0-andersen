@@ -9,7 +9,7 @@ import com.example.rickandmorty.domain.characters.CharacterOrigin
 
 class CharactersListMapper {
 
-    fun mapEntityToDataBaseModel(characterObject: CharacterObject) = CharacterInfoModel(
+    private fun mapEntityToDataBaseModel(characterObject: CharacterObject) = CharacterInfoModel(
         id = characterObject.id,
         name = characterObject.name,
         status = characterObject.status,
@@ -34,7 +34,7 @@ class CharactersListMapper {
         origin = stringToOriginObject(character.origin),
         location = stringToLocationObject(character.location),
         image = character.image,
-        episode = character.episode.split(",").toTypedArray(),
+        episode = character.episode.trim().split(",").toTypedArray(),
         url = character.url,
         created = character.created
     )
