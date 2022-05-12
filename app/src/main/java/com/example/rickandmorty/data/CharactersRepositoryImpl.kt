@@ -3,6 +3,7 @@ package com.example.rickandmorty.data
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.rickandmorty.api.CharactersApiFactory
 import com.example.rickandmorty.data.pojo.CharacterInfoModel
 import com.example.rickandmorty.domain.characters.CharacterObject
@@ -17,7 +18,7 @@ class CharactersRepositoryImpl(context: Context, compositeDisposable: CompositeD
     private val mapper = CharactersListMapper()
 
     init {
-       for (i in 1..42) {
+        for (i in 1..42) {
             val disposable = CharactersApiFactory.apiService.getCharactersInfoList(i)
                 .subscribeOn(Schedulers.io())
                 .subscribe({
@@ -31,9 +32,9 @@ class CharactersRepositoryImpl(context: Context, compositeDisposable: CompositeD
                 }, {
 
                 })
-
             compositeDisposable.add(disposable)
         }
+
     }
 
     override fun getAllCharacters(): LiveData<List<CharacterObject>> {

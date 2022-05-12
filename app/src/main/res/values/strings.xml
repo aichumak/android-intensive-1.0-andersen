@@ -13,4 +13,6 @@
     "<string name="filter_option_episode">episode</string>"
     "<string name="filter_option_apply_button">apply</string>"
     <string name="search">Search</string>
+    <string name="loading">Loading...</string>
+    <string name="tv_default_text">unknown</string>
 </resources>

@@ -1,10 +1,12 @@
 package com.example.rickandmorty.presentation
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,6 +17,7 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
     private var binding: FragmentCharacterListBinding? = null
     private var viewModel: CharacterListViewModel? = null
     private var fragmentNavigator: FragmentNavigator? = null
+    private var progressBar: ProgressBar? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -36,8 +39,10 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         return binding?.root
     }
 
+    @SuppressLint("ObjectAnimatorBinding")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
         val listAdapter = viewModel?.repository?.let { CharacterListAdapter(it) }
 
