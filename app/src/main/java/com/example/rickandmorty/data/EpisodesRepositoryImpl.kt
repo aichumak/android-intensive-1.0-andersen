@@ -25,7 +25,6 @@ class EpisodesRepositoryImpl(context: Context, compositeDisposable: CompositeDis
                     if (it != null) {
                         it.results?.let { results ->
                             addEpisodeList(mapper.mapListEntityToListDataBaseModel(results))
-                            //Log.d("tst", "Load $i")
                         }
 
                     }
