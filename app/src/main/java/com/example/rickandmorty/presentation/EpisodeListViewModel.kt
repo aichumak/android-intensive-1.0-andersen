@@ -8,7 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 class EpisodeListViewModel(application: Application) : AndroidViewModel(application) {
     private val compositeDisposable = CompositeDisposable()
-    val repository = EpisodesRepositoryImpl(application, compositeDisposable)
+    val repository = EpisodesRepositoryImpl
     private val getAllEpisodesUseCase = GetAllEpisodesUseCase(repository)
     //private val getSingleEpisodeUseCase = GetSingleEpisodeUseCase(repository)
     //private val getFilteredEpisodeUseCase = GetFilteredEpisodeUseCase(repository)

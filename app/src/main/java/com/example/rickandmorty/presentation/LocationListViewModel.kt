@@ -8,7 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 class LocationListViewModel(application: Application) : AndroidViewModel(application) {
     private val compositeDisposable = CompositeDisposable()
-    val repository = LocationsRepositoryImpl(application, compositeDisposable)
+    val repository = LocationsRepositoryImpl
     private val getAllLocationsUseCase = GetAllLocationsUseCase(repository)
     //private val getSingleLocationUseCase = GetSingleLocationUseCase(repository)
     //private val getFilteredLocationUseCase = GetFilteredLocationUseCase(repository)
