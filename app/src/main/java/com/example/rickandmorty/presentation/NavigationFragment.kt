@@ -48,7 +48,7 @@ class NavigationFragment : Fragment(R.layout.fragment_navigation) {
                 fragment,
                 CharacterListFragment.FRAGMENT_CHARACTER_LIST
             )
-            addToBackStack(CharacterListFragment.FRAGMENT_CHARACTER_LIST)
+            //addToBackStack(CharacterListFragment.FRAGMENT_CHARACTER_LIST)
             commit()
 
         }

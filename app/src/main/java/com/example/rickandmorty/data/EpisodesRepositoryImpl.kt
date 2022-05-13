@@ -1,20 +1,16 @@
 package com.example.rickandmorty.data
 
-import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.rickandmorty.api.CharactersApiFactory
 import com.example.rickandmorty.api.EpisodesApiFactory
-import com.example.rickandmorty.domain.episodes.EpisodesRepository
-import com.example.rickandmorty.data.pojo.EpisodeInfo
 import com.example.rickandmorty.data.pojo.EpisodeInfoModel
 import com.example.rickandmorty.domain.episodes.EpisodeObject
+import com.example.rickandmorty.domain.episodes.EpisodesRepository
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class EpisodesRepositoryImpl(context: Context, compositeDisposable: CompositeDisposable): EpisodesRepository {
-
-    private val episodesInfoDao = EpisodesDataBase.getInstance(context).episodeInfoDao()
+object EpisodesRepositoryImpl : EpisodesRepository {
+    private val compositeDisposable = CompositeDisposable()
+    private val episodesInfoDao = EpisodesDataBase.getInstance().episodeInfoDao()
     private val mapper = EpisodesListMapper()
 
     init {

@@ -10,7 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 class CharacterListViewModel(application: Application) : AndroidViewModel(application) {
     private val compositeDisposable = CompositeDisposable()
-    val repository = CharactersRepositoryImpl(application, compositeDisposable)
+    val repository = CharactersRepositoryImpl
     private val getAllCharactersUseCase = GetAllCharactersUseCase(repository)
     //private val getSingleCharacterUseCase = GetCharacterUseCase(repository)
     //private val getFilteredCharacterUseCase = GetFilteredCharacterUseCase(repository)
