@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentEpisodeDetailsBinding
 import com.example.rickandmorty.domain.episodes.EpisodeObject
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 
 class EpisodeFragment : Fragment(R.layout.fragment_episode_details) {
 
@@ -34,16 +36,14 @@ class EpisodeFragment : Fragment(R.layout.fragment_episode_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[EpisodeViewModel::class.java]
-        arguments?.let {
-            fillInEpisodeValues(viewModel?.getSingleEpisode(it.getInt(EpisodeFragment.EPISODE_ID)))
-        }
-    }
-
-    private fun fillInEpisodeValues(episode: EpisodeObject?) {
-        episode?.let {
+        viewModel?.episode?.observe(viewLifecycleOwner) {
             binding?.episodeDetailsName?.text = it.name
             binding?.episodeDetailsAirDate?.text = it.air_date
             binding?.episodeDetailsEpisode?.text = it.episode
+
+        }
+        arguments?.let {
+            viewModel?.getSingleEpisode(it.getInt(EPISODE_ID))
         }
     }
 

@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentLocationDetailsBinding
 import com.example.rickandmorty.domain.locations.LocationObject
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 
 class LocationFragment: Fragment(R.layout.fragment_location_details) {
 
@@ -34,21 +36,17 @@ class LocationFragment: Fragment(R.layout.fragment_location_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[LocationViewModel::class.java]
-        arguments?.let {
-            fillInLocationValues(viewModel?.getSingleLocation(it.getInt(LOCATION_ID)))
-        }
-    }
-
-    private fun fillInLocationValues(location: LocationObject?) {
-        location?.let {
+        viewModel?.location?.observe(viewLifecycleOwner) {
             binding?.locationDetailsName?.text = it.name
             binding?.locationDetailsType?.text = it.type
             binding?.locationDetailsDimension?.text = it.dimension
-
+        }
+        arguments?.let {
+            viewModel?.getSingleLocation(it.getInt(LOCATION_ID))
         }
     }
 
-    companion object {
+   companion object {
         private const val LOCATION_ID = "LOCATION_DETAILS_ID"
         const val FRAGMENT_LOCATION_DETAILS_TAG = "FRAGMENT_LOCATION_DETAILS_TAG"
 

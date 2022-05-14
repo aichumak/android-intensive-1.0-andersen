@@ -14,16 +14,10 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 class EpisodeListAdapter(
-    repository: EpisodesRepository
-    //private val fragmentNavigator: FragmentNavigator
-    //private val clickListener: ClickListener? = null
+    val fragmentNavigator: FragmentNavigator? = null
 ) : androidx.recyclerview.widget.ListAdapter<EpisodeObject, EpisodeViewHolder>(
     EpisodeDiffCallback()
 ) {
-    //private val repository = CharactersRepositoryImpl(context, compositeDisposable)
-    private val getAllEpisodesUseCase = GetAllEpisodesUseCase(repository)
-    //private val getCharacterUseCase = GetCharacterUseCase(repository)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeViewHolder {
         val episodeView =
             LayoutInflater.from(parent.context)
@@ -38,12 +32,10 @@ class EpisodeListAdapter(
             episodeView.text = episode.episode
             airDate.text = episode.air_date
             itemView.setOnClickListener {
-//                fragmentNavigator?.goFromContactListFragmentToContactFragment(contact.id)
-//                viewModel?.savedSearchText = ""
-            }
-            itemView.setOnLongClickListener {
-//                clickListener?.removeContact(contact.id)
-                true
+                fragmentNavigator?.goToNextFragment(
+                    FragmentsNames.EPISODE_DETAILS_FRAGMENT,
+                    position
+                )
             }
         }
     }

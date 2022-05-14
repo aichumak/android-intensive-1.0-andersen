@@ -41,14 +41,13 @@ class EpisodeListFragment: Fragment(R.layout.fragment_episode_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[EpisodeListViewModel::class.java]
-        val listAdapter = viewModel?.repository?.let { EpisodeListAdapter(it) }
-
+        val listAdapter = EpisodeListAdapter(fragmentNavigator)
         binding?.let {
             it.rvEpisodeList.layoutManager = GridLayoutManager(context, 2)
             it.rvEpisodeList.adapter = listAdapter
         }
         viewModel?.episodesList?.observe(viewLifecycleOwner) {
-            listAdapter?.submitList(it)
+            listAdapter.submitList(it)
         }
     }
 

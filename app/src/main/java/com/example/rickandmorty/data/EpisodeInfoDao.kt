@@ -15,13 +15,8 @@ interface EpisodeInfoDao {
     )
     fun getEpisodesInfoList(): LiveData<List<EpisodeInfoModel>>
 
-    @Query(
-        "SELECT * FROM episodes_list ORDER BY id "
-    )
-    fun getEpisodesInfoListTest(): List<EpisodeInfoModel>
-
-    @Query("SELECT * FROM episodes_list WHERE id== :episodeId")
-    fun getEpisodeInfo(episodeId: Int): EpisodeInfoModel
+    @Query("SELECT * FROM episodes_list WHERE id=:episodeId")
+    suspend fun getEpisodeInfo(episodeId: Int): EpisodeInfoModel
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertEpisodesInfo(episodesInfoList: List<EpisodeInfoModel>)

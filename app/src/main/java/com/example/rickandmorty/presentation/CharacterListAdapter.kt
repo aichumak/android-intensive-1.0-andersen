@@ -35,9 +35,6 @@ class CharacterListAdapter(
                     position
                 )
             }
-            itemView.setOnLongClickListener {
-                true
-            }
 
             Picasso.get()
                 .load(character.image)

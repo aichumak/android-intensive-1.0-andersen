@@ -41,14 +41,14 @@ class LocationListFragment: Fragment(R.layout.fragment_location_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[LocationListViewModel::class.java]
-        val listAdapter = viewModel?.repository?.let { LocationListAdapter(it) }
+        val listAdapter = LocationListAdapter(fragmentNavigator)
 
         binding?.let {
             it.rvLocationList.layoutManager = GridLayoutManager(context, 2)
             it.rvLocationList.adapter = listAdapter
         }
         viewModel?.locationsList?.observe(viewLifecycleOwner) {
-            listAdapter?.submitList(it)
+            listAdapter.submitList(it)
         }
     }
 

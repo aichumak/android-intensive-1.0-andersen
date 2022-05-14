@@ -36,7 +36,7 @@ object EpisodesRepositoryImpl : EpisodesRepository {
         return mapper.mapListDataBaseModelToListEntity(episodesInfoDao.getEpisodesInfoList())
     }
 
-    override fun getSingleEpisode(id: Int): EpisodeObject {
+    override suspend fun getSingleEpisode(id: Int): EpisodeObject {
         val episode = episodesInfoDao.getEpisodeInfo(id)
         return mapper.mapDataBaseModelToEntity(episode)
     }

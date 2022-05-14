@@ -38,7 +38,7 @@ object LocationsRepositoryImpl : LocationsRepository {
         return mapper.mapListDataBaseModelToListEntity(locationsInfoDao.getLocationsInfoList())
     }
 
-    override fun getSingleLocation(id: Int): LocationObject {
+    override suspend fun getSingleLocation(id: Int): LocationObject {
         val location = locationsInfoDao.getLocationInfo(id)
         return mapper.mapDataBaseModelToEntity(location)
     }
