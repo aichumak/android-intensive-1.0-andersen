@@ -12,13 +12,13 @@ class FragmentActivity : AppCompatActivity(), FragmentNavigator {
 
         if (supportFragmentManager.backStackEntryCount == 0) {
             supportFragmentManager.beginTransaction().run {
-                val fragment = NavigationFragment.newInstance()
+                val fragment = MainFragment.newInstance()
                 replace(
                     R.id.main_fragment_container,
                     fragment,
-                    NavigationFragment.FRAGMENT_NAVIGATION
+                    MainFragment.FRAGMENT_MAIN
                 )
-                addToBackStack(NavigationFragment.FRAGMENT_NAVIGATION)
+                addToBackStack(MainFragment.FRAGMENT_MAIN)
                 commit()
             }
         } else {
@@ -62,7 +62,7 @@ class FragmentActivity : AppCompatActivity(), FragmentNavigator {
                     else -> null
                 }
             )
-            addToBackStack(NavigationFragment.FRAGMENT_NAVIGATION)
+            addToBackStack(MainFragment.FRAGMENT_MAIN)
             commit()
         }
     }

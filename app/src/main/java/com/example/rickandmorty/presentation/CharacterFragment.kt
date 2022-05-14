@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentCharacterDetailsBinding
-import com.example.rickandmorty.domain.characters.CharacterObject
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
@@ -36,15 +35,9 @@ class CharacterFragment : Fragment(R.layout.fragment_character_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
-        arguments?.let {
-            fillInCharacterValues(viewModel?.getSingleCharacter(it.getInt(CHARACTER_ID)))
-        }
-    }
-
-    private fun fillInCharacterValues(character: CharacterObject?) {
-        character?.let {
+        viewModel?.character?.observe(viewLifecycleOwner) {
             Picasso.get()
-                .load(character.image)
+                .load(it.image)
                 .into(binding?.characterDetailsImage, object : Callback {
                     override fun onError(e: Exception?) {
                     }
@@ -60,6 +53,9 @@ class CharacterFragment : Fragment(R.layout.fragment_character_details) {
             binding?.characterDetailsGender?.text = it.gender
             binding?.characterDetailsOrigin?.text = it.origin.name
             binding?.characterDetailsLocation?.text = it.location.name
+        }
+        arguments?.let {
+            viewModel?.getSingleCharacter(it.getInt(CHARACTER_ID))
         }
     }
 

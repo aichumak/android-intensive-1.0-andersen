@@ -17,8 +17,6 @@ class CharacterListViewModel(application: Application) : AndroidViewModel(applic
 
     val charactersList = getAllCharactersUseCase.getAllCharacters()
 
-
-
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()

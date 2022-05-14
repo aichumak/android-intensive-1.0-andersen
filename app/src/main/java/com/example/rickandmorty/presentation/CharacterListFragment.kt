@@ -1,6 +1,5 @@
 package com.example.rickandmorty.presentation
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -39,17 +38,16 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         return binding?.root
     }
 
-    @SuppressLint("ObjectAnimatorBinding")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
-        val listAdapter = viewModel?.repository?.let { CharacterListAdapter(it) }
+        val listAdapter = CharacterListAdapter(fragmentNavigator)
 
         binding?.let {
             it.rvCharacterList.layoutManager = GridLayoutManager(context, 2)
             it.rvCharacterList.adapter = listAdapter
         }
+
         viewModel?.charactersList?.observe(viewLifecycleOwner) {
             listAdapter?.submitList(it)
         }

@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentNavigationBinding
 
-class NavigationFragment : Fragment(R.layout.fragment_navigation) {
-    private var viewModel: NavigationViewModel? = null
+class MainFragment : Fragment(R.layout.fragment_navigation) {
+    private var viewModel: MainViewModel? = null
     private var binding: FragmentNavigationBinding? = null
     private var fragmentNavigator: FragmentNavigator? = null
     //private var clickListener: ClickListener? = null
@@ -39,7 +39,7 @@ class NavigationFragment : Fragment(R.layout.fragment_navigation) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[NavigationViewModel::class.java]
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         childFragmentManager.beginTransaction().run {
             val fragment = CharacterListFragment.newInstance()
@@ -81,7 +81,7 @@ class NavigationFragment : Fragment(R.layout.fragment_navigation) {
                 fragment,
                 fragmentTag
             )
-            addToBackStack(fragmentTag)
+            //addToBackStack(fragmentTag)
             commit()
         }
     }
@@ -96,7 +96,7 @@ class NavigationFragment : Fragment(R.layout.fragment_navigation) {
     }
 
     companion object {
-        val FRAGMENT_NAVIGATION = "FRAGMENT_NAVIGATION"
-        fun newInstance() = NavigationFragment()
+        val FRAGMENT_MAIN = "FRAGMENT_MAIN"
+        fun newInstance() = MainFragment()
     }
 }

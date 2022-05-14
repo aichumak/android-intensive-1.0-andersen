@@ -38,9 +38,9 @@ object CharactersRepositoryImpl : CharactersRepository {
         return mapper.mapListDataBaseModelToListEntity(charactersInfoDao.getCharactersInfoList())
     }
 
-    override fun getCharacter(id: Int): CharacterObject {
+    override suspend fun getCharacter(id: Int): CharacterObject {
         val character = charactersInfoDao.getCharacterInfo(id)
-        return mapper.mapDataBaseModelToEntity(character)
+        return mapper.mapDataBaseModelToObjectEntity(character)
     }
 
     override fun addCharacterList(characterList: List<CharacterInfoModel>) {
