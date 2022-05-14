@@ -10,7 +10,7 @@ data class CharacterObject(
     val origin: CharacterOrigin,
     val location: CharacterLocation,
     val image: String,
-    val episode: Array<String>,
+    val episode: ArrayList<String>,
     val url: String,
     val created: String
 )

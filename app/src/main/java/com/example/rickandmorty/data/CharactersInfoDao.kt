@@ -9,10 +9,16 @@ import com.example.rickandmorty.data.pojo.CharacterInfoModel
 
 @Dao
 interface CharactersInfoDao {
+
     @Query(
         "SELECT * FROM characters_list ORDER BY id"
     )
-    fun getCharactersInfoList(): LiveData<List<CharacterInfoModel>>
+    fun getAllCharactersInfoList(): LiveData<List<CharacterInfoModel>>
+
+    @Query(
+        "SELECT * FROM characters_list WHERE url IN (:arrayList) ORDER BY id"
+    )
+    fun getRequiredCharactersInfoList(arrayList: ArrayList<String>): LiveData<List<CharacterInfoModel>>
 
     @Query("SELECT * FROM characters_list WHERE id=:characterId")
     suspend fun getCharacterInfo(characterId: Int): CharacterInfoModel

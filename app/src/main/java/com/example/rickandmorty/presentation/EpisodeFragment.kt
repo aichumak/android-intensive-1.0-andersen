@@ -40,6 +40,17 @@ class EpisodeFragment : Fragment(R.layout.fragment_episode_details) {
             binding?.episodeDetailsName?.text = it.name
             binding?.episodeDetailsAirDate?.text = it.air_date
             binding?.episodeDetailsEpisode?.text = it.episode
+            childFragmentManager.beginTransaction().run {
+                val fragment = CharacterListFragment.newInstance(it.characters)
+                childFragmentManager.beginTransaction().run {
+                    replace(
+                        R.id.episode_details_fragment_container,
+                        fragment,
+                        CharacterListFragment.FRAGMENT_CHARACTER_LIST
+                    )
+                    commit()
+                }
+            }
 
         }
         arguments?.let {

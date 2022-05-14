@@ -34,7 +34,7 @@ class EpisodeListAdapter(
             itemView.setOnClickListener {
                 fragmentNavigator?.goToNextFragment(
                     FragmentsNames.EPISODE_DETAILS_FRAGMENT,
-                    position
+                    episode.id
                 )
             }
         }

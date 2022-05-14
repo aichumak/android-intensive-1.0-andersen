@@ -34,8 +34,14 @@ object CharactersRepositoryImpl : CharactersRepository {
         }
     }
 
-    override fun getAllCharacters(): LiveData<List<CharacterObject>> {
-        return mapper.mapListDataBaseModelToListEntity(charactersInfoDao.getCharactersInfoList())
+    override fun getAllCharacters(arrayList: ArrayList<String>?): LiveData<List<CharacterObject>> {
+        return mapper.mapListDataBaseModelToListEntity(
+            if (arrayList == null){
+                charactersInfoDao.getAllCharactersInfoList()
+            } else {
+                charactersInfoDao.getRequiredCharactersInfoList(arrayList)
+            }
+        )
     }
 
     override suspend fun getCharacter(id: Int): CharacterObject {

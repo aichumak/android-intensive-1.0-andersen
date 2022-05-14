@@ -11,7 +11,6 @@ import com.squareup.picasso.Picasso
 
 class CharacterListAdapter(
     val fragmentNavigator: FragmentNavigator? = null
-    //private val clickListener: ClickListener? = null
 ) : androidx.recyclerview.widget.ListAdapter<CharacterObject, CharacterViewHolder>(
     CharacterDiffCallback()
 ) {
@@ -32,7 +31,7 @@ class CharacterListAdapter(
             itemView.setOnClickListener {
                 fragmentNavigator?.goToNextFragment(
                     FragmentsNames.CHARACTER_DETAILS_FRAGMENT,
-                    position
+                    character.id
                 )
             }
 

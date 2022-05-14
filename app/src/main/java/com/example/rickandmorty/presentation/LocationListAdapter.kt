@@ -34,7 +34,7 @@ class LocationListAdapter(
             itemView.setOnClickListener {
                 fragmentNavigator?.goToNextFragment(
                     FragmentsNames.LOCATION_DETAILS_FRAGMENT,
-                    position
+                    location.id
                 )
             }
         }

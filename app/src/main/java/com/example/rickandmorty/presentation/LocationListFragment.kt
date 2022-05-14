@@ -47,13 +47,23 @@ class LocationListFragment: Fragment(R.layout.fragment_location_list) {
             it.rvLocationList.layoutManager = GridLayoutManager(context, 2)
             it.rvLocationList.adapter = listAdapter
         }
+
         viewModel?.locationsList?.observe(viewLifecycleOwner) {
             listAdapter.submitList(it)
         }
+
     }
 
     companion object {
+        val LOCATION_ARRAY = "LOCATION_ARRAY"
         val FRAGMENT_LOCATION_LIST = "FRAGMENT_LOCATION_LIST"
-        fun newInstance() = LocationListFragment()
+        fun newInstance(arrayList: ArrayList<String>?): LocationListFragment {
+            val args = Bundle().apply {
+                putStringArrayList(LOCATION_ARRAY, arrayList)
+            }
+            val fragment = LocationListFragment()
+            fragment.arguments = args
+            return fragment
+        }
     }
 }

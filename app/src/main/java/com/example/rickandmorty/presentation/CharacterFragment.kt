@@ -35,6 +35,9 @@ class CharacterFragment : Fragment(R.layout.fragment_character_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
+        arguments?.let {
+            viewModel?.getSingleCharacter(it.getInt(CHARACTER_ID))
+        }
         viewModel?.character?.observe(viewLifecycleOwner) {
             Picasso.get()
                 .load(it.image)
@@ -53,9 +56,17 @@ class CharacterFragment : Fragment(R.layout.fragment_character_details) {
             binding?.characterDetailsGender?.text = it.gender
             binding?.characterDetailsOrigin?.text = it.origin.name
             binding?.characterDetailsLocation?.text = it.location.name
-        }
-        arguments?.let {
-            viewModel?.getSingleCharacter(it.getInt(CHARACTER_ID))
+            childFragmentManager.beginTransaction().run {
+                val fragment = EpisodeListFragment.newInstance(it.episode)
+                childFragmentManager.beginTransaction().run {
+                    replace(
+                        R.id.character_details_fragment_container,
+                        fragment,
+                        CharacterListFragment.FRAGMENT_CHARACTER_LIST
+                    )
+                    commit()
+                }
+            }
         }
     }
 

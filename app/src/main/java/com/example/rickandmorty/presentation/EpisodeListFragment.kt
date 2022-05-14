@@ -41,6 +41,9 @@ class EpisodeListFragment: Fragment(R.layout.fragment_episode_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[EpisodeListViewModel::class.java]
+        arguments?.let {
+            viewModel?.updateArrayEpisodes(it.getStringArrayList(EPISODE_ARRAY))
+        }
         val listAdapter = EpisodeListAdapter(fragmentNavigator)
         binding?.let {
             it.rvEpisodeList.layoutManager = GridLayoutManager(context, 2)
@@ -49,10 +52,19 @@ class EpisodeListFragment: Fragment(R.layout.fragment_episode_list) {
         viewModel?.episodesList?.observe(viewLifecycleOwner) {
             listAdapter.submitList(it)
         }
+
     }
 
     companion object {
+        val EPISODE_ARRAY = "EPISODE_ARRAY"
         val FRAGMENT_EPISODE_LIST = "FRAGMENT_EPISODE_LIST"
-        fun newInstance() = EpisodeListFragment()
+        fun newInstance(arrayList: ArrayList<String>?): EpisodeListFragment {
+            val args = Bundle().apply {
+                putStringArrayList(EPISODE_ARRAY, arrayList)
+            }
+            val fragment = EpisodeListFragment()
+            fragment.arguments = args
+            return fragment
+        }
     }
 }

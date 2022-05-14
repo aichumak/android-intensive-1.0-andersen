@@ -7,22 +7,13 @@
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/location_details_id"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/location_details_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location_details_id" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/location_details_type"
@@ -47,32 +38,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/location_details_dimension"
-        app:layout_constraintBottom_toTopOf="@id/location_details_url"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        >
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/location_details_url"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/location_details_created"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/location_details_created"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent">
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,8 +32,14 @@ object EpisodesRepositoryImpl : EpisodesRepository {
         }
     }
 
-    override fun getAllEpisodes(): LiveData<List<EpisodeObject>> {
-        return mapper.mapListDataBaseModelToListEntity(episodesInfoDao.getEpisodesInfoList())
+    override fun getAllEpisodes(arrayList: ArrayList<String>?): LiveData<List<EpisodeObject>> {
+        return mapper.mapListDataBaseModelToListEntity(
+            if (arrayList == null){
+                episodesInfoDao.getAllEpisodesInfoList()
+            } else {
+                episodesInfoDao.getRequiredEpisodesInfoList(arrayList)
+            }
+        )
     }
 
     override suspend fun getSingleEpisode(id: Int): EpisodeObject {

@@ -40,6 +40,17 @@ class LocationFragment: Fragment(R.layout.fragment_location_details) {
             binding?.locationDetailsName?.text = it.name
             binding?.locationDetailsType?.text = it.type
             binding?.locationDetailsDimension?.text = it.dimension
+            childFragmentManager.beginTransaction().run {
+                val fragment = CharacterListFragment.newInstance(it.residents)
+                childFragmentManager.beginTransaction().run {
+                    replace(
+                        R.id.location_details_fragment_container,
+                        fragment,
+                        CharacterListFragment.FRAGMENT_CHARACTER_LIST
+                    )
+                    commit()
+                }
+            }
         }
         arguments?.let {
             viewModel?.getSingleLocation(it.getInt(LOCATION_ID))
