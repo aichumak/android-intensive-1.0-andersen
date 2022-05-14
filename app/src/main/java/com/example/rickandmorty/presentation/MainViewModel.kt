@@ -7,5 +7,4 @@ class MainViewModel : ViewModel() {
 //    val locationsRepository = LocationsRepositoryImpl(context)
 //    val episodesRepository = EpisodesRepositoryImpl(context)
 
-
 }
