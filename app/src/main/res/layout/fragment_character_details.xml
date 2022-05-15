@@ -58,7 +58,6 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/character_details_name"
         app:layout_constraintTop_toBottomOf="@+id/character_details_type" />
 
@@ -68,7 +67,6 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/character_details_image"
         app:layout_constraintTop_toBottomOf="@id/character_details_image" />
 
@@ -78,17 +76,15 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/character_details_image"
-        app:layout_constraintTop_toBottomOf="@+id/character_details_origin"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/character_details_origin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/character_details_guideline_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="151dp" />
+        app:layout_constraintGuide_begin="150dp" />
 
     <FrameLayout
         android:id="@+id/character_details_fragment_container"
@@ -98,6 +94,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/character_details_location">
+
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
