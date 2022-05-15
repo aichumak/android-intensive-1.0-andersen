@@ -34,7 +34,7 @@ class CharactersListMapper {
         origin = stringToOriginObject(character.origin),
         location = stringToLocationObject(character.location),
         image = character.image,
-        episode = ArrayList(character.episode.trim().split("")),
+        episode = ArrayList(character.episode.replace(" ", "").split(",")),
         url = character.url,
         created = character.created
     )

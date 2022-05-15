@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.rickandmorty.R
-import com.example.rickandmorty.databinding.FragmentCharacterListBinding
 import com.example.rickandmorty.databinding.FragmentLocationListBinding
 
 class LocationListFragment: Fragment(R.layout.fragment_location_list) {
@@ -47,9 +46,11 @@ class LocationListFragment: Fragment(R.layout.fragment_location_list) {
             it.rvLocationList.layoutManager = GridLayoutManager(context, 2)
             it.rvLocationList.adapter = listAdapter
         }
-
         viewModel?.locationsList?.observe(viewLifecycleOwner) {
             listAdapter.submitList(it)
+        }
+        binding?.filterApplyButton?.setOnClickListener {
+                fragmentNavigator?.goToFilterDialogForResult(viewModel)
         }
 
     }

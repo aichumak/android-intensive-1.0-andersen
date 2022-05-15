@@ -42,11 +42,9 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
         arguments?.let {
-            viewModel?.updateArrayCharacters(it.getStringArrayList(CHARACTERS_ARRAY))
+            viewModel?.updateRequiredCharacters(it.getStringArrayList(CHARACTERS_ARRAY))
         }
-
         val listAdapter = CharacterListAdapter(fragmentNavigator)
-
         binding?.let {
             it.rvCharacterList.layoutManager = GridLayoutManager(context, 2)
             it.rvCharacterList.adapter = listAdapter
@@ -54,8 +52,9 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         viewModel?.charactersList?.observe(viewLifecycleOwner) {
             listAdapter.submitList(it)
         }
-
-
+        binding?.filterApplyButton?.setOnClickListener {
+                fragmentNavigator?.goToFilterDialogForResult(viewModel)
+        }
     }
 
     companion object {

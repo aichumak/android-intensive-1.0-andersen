@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.rickandmorty.R
-import com.example.rickandmorty.databinding.FragmentCharacterListBinding
 import com.example.rickandmorty.databinding.FragmentEpisodeListBinding
 
 class EpisodeListFragment: Fragment(R.layout.fragment_episode_list) {
@@ -52,7 +51,9 @@ class EpisodeListFragment: Fragment(R.layout.fragment_episode_list) {
         viewModel?.episodesList?.observe(viewLifecycleOwner) {
             listAdapter.submitList(it)
         }
-
+        binding?.filterApplyButton?.setOnClickListener {
+                fragmentNavigator?.goToFilterDialogForResult(viewModel)
+        }
     }
 
     companion object {

@@ -20,6 +20,11 @@ interface CharactersInfoDao {
     )
     fun getRequiredCharactersInfoList(arrayList: ArrayList<String>): LiveData<List<CharacterInfoModel>>
 
+    @Query(
+        "SELECT * FROM characters_list WHERE gender=:second" //ORDER BY id"
+    )
+    fun getFilteredCharactersInfoList(second: String): LiveData<List<CharacterInfoModel>>
+
     @Query("SELECT * FROM characters_list WHERE id=:characterId")
     suspend fun getCharacterInfo(characterId: Int): CharacterInfoModel
 
