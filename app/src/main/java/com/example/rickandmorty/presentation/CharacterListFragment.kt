@@ -1,6 +1,5 @@
 package com.example.rickandmorty.presentation
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -39,24 +38,36 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         return binding?.root
     }
 
-    @SuppressLint("ObjectAnimatorBinding")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
-        val listAdapter = viewModel?.repository?.let { CharacterListAdapter(it) }
+        arguments?.let {
+            viewModel?.updateArrayCharacters(it.getStringArrayList(CHARACTERS_ARRAY))
+        }
+
+        val listAdapter = CharacterListAdapter(fragmentNavigator)
 
         binding?.let {
             it.rvCharacterList.layoutManager = GridLayoutManager(context, 2)
             it.rvCharacterList.adapter = listAdapter
         }
         viewModel?.charactersList?.observe(viewLifecycleOwner) {
-            listAdapter?.submitList(it)
+            listAdapter.submitList(it)
         }
+
+
     }
 
     companion object {
+        val CHARACTERS_ARRAY = "CHARACTERS_ARRAY"
         val FRAGMENT_CHARACTER_LIST = "FRAGMENT_CHARACTER_LIST"
-        fun newInstance() = CharacterListFragment()
+        fun newInstance(arrayList: ArrayList<String>?): CharacterListFragment {
+            val args = Bundle().apply {
+                putStringArrayList(CHARACTERS_ARRAY, arrayList)
+            }
+            val fragment = CharacterListFragment()
+            fragment.arguments = args
+            return fragment
+        }
     }
 }

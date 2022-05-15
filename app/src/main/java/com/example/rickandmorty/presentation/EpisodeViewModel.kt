@@ -1,4 +1,31 @@
 package com.example.rickandmorty.presentation
 
-class EpisodeViewModel {
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.rickandmorty.data.EpisodesRepositoryImpl
+import com.example.rickandmorty.domain.characters.CharacterObject
+import com.example.rickandmorty.domain.episodes.EpisodeObject
+import com.example.rickandmorty.domain.episodes.GetSingleEpisodeUseCase
+import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.launch
+
+class EpisodeViewModel : ViewModel() {
+    private val compositeDisposable = CompositeDisposable()
+    private val repository = EpisodesRepositoryImpl
+    private val getSingleEpisodeUseCase = GetSingleEpisodeUseCase(repository)
+
+    val episode = MutableLiveData<EpisodeObject>()
+
+    fun getSingleEpisode(position: Int) {
+        viewModelScope.launch {
+            val item = getSingleEpisodeUseCase.getSingleEpisode(position+1)
+            episode.value = item
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.dispose()
+    }
 }

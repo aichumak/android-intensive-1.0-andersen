@@ -22,7 +22,7 @@ class LocationsListMapper {
         name = locationInfoModel.name,
         type = locationInfoModel.type,
         dimension = locationInfoModel.dimension,
-        residents = locationInfoModel.residents.trim().split(",").toTypedArray(),
+        residents = ArrayList(locationInfoModel.residents.trim().split(",")),
         url = locationInfoModel.url,
         created = locationInfoModel.created
     )

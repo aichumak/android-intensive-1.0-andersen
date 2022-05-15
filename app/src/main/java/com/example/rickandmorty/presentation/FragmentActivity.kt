@@ -2,6 +2,7 @@ package com.example.rickandmorty.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.rickandmorty.R
 
 class FragmentActivity : AppCompatActivity(), FragmentNavigator {
@@ -11,13 +12,13 @@ class FragmentActivity : AppCompatActivity(), FragmentNavigator {
 
         if (supportFragmentManager.backStackEntryCount == 0) {
             supportFragmentManager.beginTransaction().run {
-                val fragment = NavigationFragment.newInstance()
+                val fragment = MainFragment.newInstance()
                 replace(
                     R.id.main_fragment_container,
                     fragment,
-                    NavigationFragment.FRAGMENT_NAVIGATION
+                    MainFragment.FRAGMENT_MAIN
                 )
-                addToBackStack(NavigationFragment.FRAGMENT_NAVIGATION)
+                addToBackStack(MainFragment.FRAGMENT_MAIN)
                 commit()
             }
         } else {
@@ -28,16 +29,41 @@ class FragmentActivity : AppCompatActivity(), FragmentNavigator {
         }
     }
 
-
-    override fun goToCharacterListFragment() {
-        TODO("Not yet implemented")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            finish()
+        } else {
+            goToPrevFragment()
+        }
     }
 
-    override fun goToLocationListFragment() {
-        TODO("Not yet implemented")
+    override fun goToNextFragment(fragment: FragmentsNames, itemId: Int) {
+        when (fragment) {
+            FragmentsNames.CHARACTER_DETAILS_FRAGMENT -> runFragment(CharacterFragment.newInstance(itemId))
+            FragmentsNames.EPISODE_DETAILS_FRAGMENT -> runFragment(EpisodeFragment.newInstance(itemId))
+            FragmentsNames.LOCATION_DETAILS_FRAGMENT -> runFragment(LocationFragment.newInstance(itemId))
+        }
     }
 
-    override fun goToEpisodeListFragment() {
-        TODO("Not yet implemented")
+    override fun goToPrevFragment() {
+        supportFragmentManager.popBackStack()
+    }
+
+    private fun runFragment(fragment: Fragment){
+        supportFragmentManager.beginTransaction().run {
+            replace(
+                R.id.main_fragment_container,
+                fragment,
+                when(fragment){
+                    is CharacterFragment -> CharacterFragment.FRAGMENT_CHARACTER_DETAILS_TAG
+                    is EpisodeFragment -> EpisodeFragment.FRAGMENT_EPISODE_DETAILS_TAG
+                    is LocationFragment -> LocationFragment.FRAGMENT_LOCATION_DETAILS_TAG
+                    else -> null
+                }
+            )
+            addToBackStack(MainFragment.FRAGMENT_MAIN)
+            commit()
+        }
     }
 }

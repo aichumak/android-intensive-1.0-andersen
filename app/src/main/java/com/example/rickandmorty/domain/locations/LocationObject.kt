@@ -5,7 +5,7 @@ data class LocationObject(
     val name: String,
     val type: String,
     val dimension: String,
-    val residents: Array<String>,
+    val residents: ArrayList<String>,
     val url: String,
     val created: String
 )

@@ -1,20 +1,16 @@
 package com.example.rickandmorty.data
 
-import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.rickandmorty.api.CharactersApiFactory
 import com.example.rickandmorty.api.EpisodesApiFactory
-import com.example.rickandmorty.domain.episodes.EpisodesRepository
-import com.example.rickandmorty.data.pojo.EpisodeInfo
 import com.example.rickandmorty.data.pojo.EpisodeInfoModel
 import com.example.rickandmorty.domain.episodes.EpisodeObject
+import com.example.rickandmorty.domain.episodes.EpisodesRepository
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class EpisodesRepositoryImpl(context: Context, compositeDisposable: CompositeDisposable): EpisodesRepository {
-
-    private val episodesInfoDao = EpisodesDataBase.getInstance(context).episodeInfoDao()
+object EpisodesRepositoryImpl : EpisodesRepository {
+    private val compositeDisposable = CompositeDisposable()
+    private val episodesInfoDao = EpisodesDataBase.getInstance().episodeInfoDao()
     private val mapper = EpisodesListMapper()
 
     init {
@@ -36,11 +32,17 @@ class EpisodesRepositoryImpl(context: Context, compositeDisposable: CompositeDis
         }
     }
 
-    override fun getAllEpisodes(): LiveData<List<EpisodeObject>> {
-        return mapper.mapListDataBaseModelToListEntity(episodesInfoDao.getEpisodesInfoList())
+    override fun getAllEpisodes(arrayList: ArrayList<String>?): LiveData<List<EpisodeObject>> {
+        return mapper.mapListDataBaseModelToListEntity(
+            if (arrayList == null){
+                episodesInfoDao.getAllEpisodesInfoList()
+            } else {
+                episodesInfoDao.getRequiredEpisodesInfoList(arrayList)
+            }
+        )
     }
 
-    override fun getSingleEpisode(id: Int): EpisodeObject {
+    override suspend fun getSingleEpisode(id: Int): EpisodeObject {
         val episode = episodesInfoDao.getEpisodeInfo(id)
         return mapper.mapDataBaseModelToEntity(episode)
     }

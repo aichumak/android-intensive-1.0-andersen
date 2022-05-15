@@ -14,16 +14,10 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 class LocationListAdapter(
-    repository: LocationsRepository
-    //private val fragmentNavigator: FragmentNavigator
-    //private val clickListener: ClickListener? = null
+    val fragmentNavigator: FragmentNavigator? = null
 ) : androidx.recyclerview.widget.ListAdapter<LocationObject, LocationViewHolder>(
     LocationDiffCallback()
 ) {
-    //private val repository = CharactersRepositoryImpl(context, compositeDisposable)
-    private val getAllLocationsUseCase = GetAllLocationsUseCase(repository)
-    //private val getCharacterUseCase = GetCharacterUseCase(repository)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationViewHolder {
         val locationView =
             LayoutInflater.from(parent.context)
@@ -38,12 +32,10 @@ class LocationListAdapter(
             type.text = location.type
             dimension.text = location.dimension
             itemView.setOnClickListener {
-//                fragmentNavigator?.goFromContactListFragmentToContactFragment(contact.id)
-//                viewModel?.savedSearchText = ""
-            }
-            itemView.setOnLongClickListener {
-//                clickListener?.removeContact(contact.id)
-                true
+                fragmentNavigator?.goToNextFragment(
+                    FragmentsNames.LOCATION_DETAILS_FRAGMENT,
+                    location.id
+                )
             }
         }
     }

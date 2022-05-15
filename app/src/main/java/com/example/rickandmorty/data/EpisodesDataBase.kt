@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.rickandmorty.RickAndMorty
 import com.example.rickandmorty.data.pojo.EpisodeInfo
 import com.example.rickandmorty.data.pojo.EpisodeInfoModel
 
@@ -14,11 +15,11 @@ abstract class EpisodesDataBase : RoomDatabase() {
         private const val DB_NAME = "episodes.db"
         private val LOCK = Any()
 
-        fun getInstance(context: Context): EpisodesDataBase {
+        fun getInstance(): EpisodesDataBase {
             synchronized(LOCK) {
                 db?.let { return it }
                 val instance =
-                    Room.databaseBuilder(context, EpisodesDataBase::class.java, DB_NAME).build()
+                    Room.databaseBuilder(RickAndMorty.getAppContext(), EpisodesDataBase::class.java, DB_NAME).build()
                 db = instance
                 return instance
             }

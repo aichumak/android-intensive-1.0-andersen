@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentNavigationBinding
 
-class NavigationFragment : Fragment(R.layout.fragment_navigation) {
-    private var viewModel: NavigationViewModel? = null
+class MainFragment : Fragment(R.layout.fragment_navigation) {
+    private var viewModel: MainViewModel? = null
     private var binding: FragmentNavigationBinding? = null
     private var fragmentNavigator: FragmentNavigator? = null
     //private var clickListener: ClickListener? = null
@@ -39,16 +39,16 @@ class NavigationFragment : Fragment(R.layout.fragment_navigation) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[NavigationViewModel::class.java]
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         childFragmentManager.beginTransaction().run {
-            val fragment = CharacterListFragment.newInstance()
+            val fragment = CharacterListFragment.newInstance(null)
             replace(
                 R.id.list_view_fragment_container,
                 fragment,
                 CharacterListFragment.FRAGMENT_CHARACTER_LIST
             )
-            addToBackStack(CharacterListFragment.FRAGMENT_CHARACTER_LIST)
+            //addToBackStack(CharacterListFragment.FRAGMENT_CHARACTER_LIST)
             commit()
 
         }
@@ -56,15 +56,15 @@ class NavigationFragment : Fragment(R.layout.fragment_navigation) {
         binding?.navigationView?.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_characters_list -> {
-                    runFragment(CharacterListFragment.newInstance())
+                    runFragment(CharacterListFragment.newInstance(null))
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_locations_list -> {
-                    runFragment(LocationListFragment.newInstance())
+                    runFragment(LocationListFragment.newInstance(null))
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_episodes_list -> {
-                    runFragment(EpisodeListFragment.newInstance())
+                    runFragment(EpisodeListFragment.newInstance(null))
                     return@setOnItemSelectedListener true
                 }
             }
@@ -81,7 +81,7 @@ class NavigationFragment : Fragment(R.layout.fragment_navigation) {
                 fragment,
                 fragmentTag
             )
-            addToBackStack(fragmentTag)
+            //addToBackStack(fragmentTag)
             commit()
         }
     }
@@ -96,7 +96,7 @@ class NavigationFragment : Fragment(R.layout.fragment_navigation) {
     }
 
     companion object {
-        val FRAGMENT_NAVIGATION = "FRAGMENT_NAVIGATION"
-        fun newInstance() = NavigationFragment()
+        val FRAGMENT_MAIN = "FRAGMENT_MAIN"
+        fun newInstance() = MainFragment()
     }
 }

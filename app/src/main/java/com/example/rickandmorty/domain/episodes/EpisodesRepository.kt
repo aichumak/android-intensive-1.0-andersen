@@ -5,7 +5,7 @@ import com.example.rickandmorty.data.pojo.EpisodeInfoModel
 
 interface EpisodesRepository {
     fun addEpisodeList(episodeList: List<EpisodeInfoModel>)
-    fun getAllEpisodes(): LiveData<List<EpisodeObject>>
-    fun getSingleEpisode(id: Int): EpisodeObject
+    fun getAllEpisodes(arrayList: ArrayList<String>?): LiveData<List<EpisodeObject>>
+    suspend fun getSingleEpisode(id: Int): EpisodeObject
     fun getFilteredEpisodes()
 }

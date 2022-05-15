@@ -13,15 +13,15 @@ interface EpisodeInfoDao {
     @Query(
         "SELECT * FROM episodes_list ORDER BY id "
     )
-    fun getEpisodesInfoList(): LiveData<List<EpisodeInfoModel>>
+    fun getAllEpisodesInfoList(): LiveData<List<EpisodeInfoModel>>
 
     @Query(
-        "SELECT * FROM episodes_list ORDER BY id "
+        "SELECT * FROM episodes_list WHERE url IN (:arrayList) ORDER BY id "
     )
-    fun getEpisodesInfoListTest(): List<EpisodeInfoModel>
+    fun getRequiredEpisodesInfoList(arrayList: ArrayList<String>): LiveData<List<EpisodeInfoModel>>
 
-    @Query("SELECT * FROM episodes_list WHERE id== :episodeId")
-    fun getEpisodeInfo(episodeId: Int): EpisodeInfoModel
+    @Query("SELECT * FROM episodes_list WHERE id=:episodeId")
+    suspend fun getEpisodeInfo(episodeId: Int): EpisodeInfoModel
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertEpisodesInfo(episodesInfoList: List<EpisodeInfoModel>)

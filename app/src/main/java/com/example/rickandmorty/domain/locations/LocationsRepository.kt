@@ -6,6 +6,6 @@ import com.example.rickandmorty.data.pojo.LocationInfoModel
 interface LocationsRepository {
     fun addLocationList(locationList: List<LocationInfoModel>)
     fun getAllLocations(): LiveData<List<LocationObject>>
-    fun getSingleLocation(id: Int): LocationObject
+    suspend fun getSingleLocation(id: Int): LocationObject
     fun getFilteredLocations()
 }

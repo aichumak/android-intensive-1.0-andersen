@@ -5,22 +5,15 @@ import android.view.ViewGroup
 import com.example.rickandmorty.R
 import com.example.rickandmorty.data.CharactersRepositoryImpl
 import com.example.rickandmorty.domain.characters.CharacterObject
-import com.example.rickandmorty.domain.characters.CharactersRepository
 import com.example.rickandmorty.domain.characters.GetAllCharactersUseCase
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 class CharacterListAdapter(
-    repository: CharactersRepository
-    //private val fragmentNavigator: FragmentNavigator
-    //private val clickListener: ClickListener? = null
+    val fragmentNavigator: FragmentNavigator? = null
 ) : androidx.recyclerview.widget.ListAdapter<CharacterObject, CharacterViewHolder>(
     CharacterDiffCallback()
 ) {
-    //private val repository = CharactersRepositoryImpl(context, compositeDisposable)
-    private val getAllCharactersUseCase = GetAllCharactersUseCase(repository)
-    //private val getCharacterUseCase = GetCharacterUseCase(repository)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val characterView =
             LayoutInflater.from(parent.context)
@@ -36,18 +29,14 @@ class CharacterListAdapter(
             status.text = character.status
             gender.text = character.gender
             itemView.setOnClickListener {
-//                fragmentNavigator?.goFromContactListFragmentToContactFragment(contact.id)
-//                viewModel?.savedSearchText = ""
-            }
-            itemView.setOnLongClickListener {
-//                clickListener?.removeContact(contact.id)
-                true
+                fragmentNavigator?.goToNextFragment(
+                    FragmentsNames.CHARACTER_DETAILS_FRAGMENT,
+                    character.id
+                )
             }
 
             Picasso.get()
                 .load(character.image)
-                //.memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
-                //.networkPolicy(NetworkPolicy.NO_CACHE)
                 .into(image, object : Callback {
                     override fun onError(e: Exception?) {
                         //showToastWithError()

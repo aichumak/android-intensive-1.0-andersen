@@ -1,21 +1,17 @@
 package com.example.rickandmorty.data
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.rickandmorty.api.CharactersApiFactory
 import com.example.rickandmorty.api.LocationsApiFactory
-import com.example.rickandmorty.domain.locations.LocationsRepository
-import com.example.rickandmorty.data.pojo.LocationInfo
 import com.example.rickandmorty.data.pojo.LocationInfoModel
-import com.example.rickandmorty.domain.episodes.EpisodeObject
 import com.example.rickandmorty.domain.locations.LocationObject
+import com.example.rickandmorty.domain.locations.LocationsRepository
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class LocationsRepositoryImpl(context: Context, compositeDisposable: CompositeDisposable): LocationsRepository {
-
-    private val locationsInfoDao = LocationsDataBase.getInstance(context).locationInfoDao()
+object LocationsRepositoryImpl : LocationsRepository {
+    private val compositeDisposable = CompositeDisposable()
+    private val locationsInfoDao = LocationsDataBase.getInstance().locationInfoDao()
     private val mapper = LocationsListMapper()
 
     init {
@@ -42,7 +38,7 @@ class LocationsRepositoryImpl(context: Context, compositeDisposable: CompositeDi
         return mapper.mapListDataBaseModelToListEntity(locationsInfoDao.getLocationsInfoList())
     }
 
-    override fun getSingleLocation(id: Int): LocationObject {
+    override suspend fun getSingleLocation(id: Int): LocationObject {
         val location = locationsInfoDao.getLocationInfo(id)
         return mapper.mapDataBaseModelToEntity(location)
     }
