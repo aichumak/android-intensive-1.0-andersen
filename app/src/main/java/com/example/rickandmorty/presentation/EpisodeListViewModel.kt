@@ -5,9 +5,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.rickandmorty.data.EpisodesRepositoryImpl
+import com.example.rickandmorty.domain.characters.CharacterObject
 import com.example.rickandmorty.domain.episodes.EpisodeObject
 import com.example.rickandmorty.domain.episodes.GetAllEpisodesUseCase
 import io.reactivex.disposables.CompositeDisposable
+import java.util.*
+import kotlin.collections.ArrayList
 
 class EpisodeListViewModel(application: Application) : AndroidViewModel(application) {
     private val compositeDisposable = CompositeDisposable()
@@ -15,12 +18,12 @@ class EpisodeListViewModel(application: Application) : AndroidViewModel(applicat
     private val getAllEpisodesUseCase = GetAllEpisodesUseCase(repository)
     private var arrayEpisodes: ArrayList<String>? = null
 
-    //var episodesList = getAllEpisodesUseCase.getAllEpisodes(arrayEpisodes)
-    var episodesList: LiveData<List<EpisodeObject>>? = null
+    val episodesList = MutableLiveData<List<EpisodeObject>>()
+    private val prevEpisodesList = MutableLiveData<List<EpisodeObject>>()
 
     fun updateArrayEpisodes(arrayList: ArrayList<String>?) {
         arrayEpisodes = arrayList
-        episodesList = getAllEpisodesUseCase.getAllEpisodes(arrayEpisodes)
+        episodesList.value = getAllEpisodesUseCase.getAllEpisodes(arrayEpisodes).value
     }
 
     fun getFilteredData(filterParameters: Pair<String, String>?) {
@@ -31,11 +34,13 @@ class EpisodeListViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
+    fun replaceListForSearch(newList: TreeSet<EpisodeObject>) {
+        prevEpisodesList.value = episodesList.value
+        episodesList.value = newList.toList()
+    }
+
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
     }
-
-
-
 }

@@ -5,9 +5,11 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.rickandmorty.data.LocationsRepositoryImpl
+import com.example.rickandmorty.domain.episodes.EpisodeObject
 import com.example.rickandmorty.domain.locations.GetAllLocationsUseCase
 import com.example.rickandmorty.domain.locations.LocationObject
 import io.reactivex.disposables.CompositeDisposable
+import java.util.*
 
 class LocationListViewModel(application: Application) : AndroidViewModel(application) {
     private val compositeDisposable = CompositeDisposable()
@@ -16,13 +18,11 @@ class LocationListViewModel(application: Application) : AndroidViewModel(applica
     //private val getSingleLocationUseCase = GetSingleLocationUseCase(repository)
     //private val getFilteredLocationUseCase = GetFilteredLocationUseCase(repository)
 
-    var locationsList = getAllLocationsUseCase.getAllLocations()
-    //var locationsList: LiveData<List<LocationObject>>? = null
+    val locationsList = MutableLiveData<List<LocationObject>>()
+    private val prevLocationsList = MutableLiveData<List<LocationObject>>()
 
-
-    override fun onCleared() {
-        super.onCleared()
-        compositeDisposable.dispose()
+    fun updateRequiredLocations() {
+        locationsList.value = getAllLocationsUseCase.getAllLocations().value
     }
 
     fun getFilteredData(filterParameters: Pair<String, String>?) {
@@ -32,5 +32,16 @@ class LocationListViewModel(application: Application) : AndroidViewModel(applica
             //getFilteredCharactersUseCase.getFilteredCharacters(filterParameters)
         }
     }
+
+    fun replaceListForSearch(newList: TreeSet<LocationObject>) {
+        prevLocationsList.value = locationsList.value
+        locationsList.value = newList.toList()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.dispose()
+    }
+
 
 }

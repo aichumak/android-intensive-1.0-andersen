@@ -9,6 +9,8 @@ import com.example.rickandmorty.domain.characters.CharacterObject
 import com.example.rickandmorty.domain.characters.GetAllCharactersUseCase
 import com.example.rickandmorty.domain.characters.GetFilteredCharactersUseCase
 import io.reactivex.disposables.CompositeDisposable
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CharacterListViewModel(application: Application) : AndroidViewModel(application) {
     private val compositeDisposable = CompositeDisposable()
@@ -17,21 +19,25 @@ class CharacterListViewModel(application: Application) : AndroidViewModel(applic
     private val getFilteredCharactersUseCase = GetFilteredCharactersUseCase(repository)
     private var arrayCharacters: ArrayList<String>? = null
 
-    //var charactersList = getAllCharactersUseCase.getAllCharacters(arrayCharacters)
-    var charactersList: LiveData<List<CharacterObject>>? = null
+    val charactersList = MutableLiveData<List<CharacterObject>>()
+    private val prevCharactersList = MutableLiveData<List<CharacterObject>>()
 
     fun updateRequiredCharacters(arrayList: ArrayList<String>?) {
         arrayCharacters = arrayList
-        charactersList = getAllCharactersUseCase.getAllCharacters(arrayCharacters)
+        charactersList.value = getAllCharactersUseCase.getAllCharacters(arrayCharacters).value // as MutableLiveData<List<CharacterObject>>
     }
 
     fun getFilteredData(filterParameters: Pair<String, String>?) {
-        charactersList = if (filterParameters == null) {
-            val array = arrayListOf("https://rickandmortyapi.com/api/character/1")
-            getAllCharactersUseCase.getAllCharacters(array)
+        charactersList.value = if (filterParameters == null) {
+            getAllCharactersUseCase.getAllCharacters(filterParameters).value
         } else {
-            getFilteredCharactersUseCase.getFilteredCharacters(filterParameters)
+            getFilteredCharactersUseCase.getFilteredCharacters(filterParameters).value
         }
+    }
+
+    fun replaceListForSearch(newList: TreeSet<CharacterObject>) {
+        prevCharactersList.value = charactersList.value
+        charactersList.value = newList.toList()
     }
 
     override fun onCleared() {

@@ -1,6 +1,7 @@
 package com.example.rickandmorty.data
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import com.example.rickandmorty.data.pojo.CharacterInfoModel
 import com.example.rickandmorty.domain.characters.CharacterLocation

@@ -1,6 +1,7 @@
 package com.example.rickandmorty.domain.characters
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.rickandmorty.data.pojo.CharacterInfoModel
 
 interface CharactersRepository {

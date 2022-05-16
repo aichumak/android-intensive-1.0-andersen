@@ -8,6 +8,7 @@ import com.example.rickandmorty.domain.characters.CharacterObject
 import com.example.rickandmorty.domain.characters.GetCharacterUseCase
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.launch
+import java.util.*
 
 class CharacterViewModel : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
