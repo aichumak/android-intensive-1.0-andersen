@@ -2,6 +2,7 @@ package com.example.rickandmorty.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.rickandmorty.api.CharactersApiFactory
 import com.example.rickandmorty.data.pojo.CharacterInfoModel
 import com.example.rickandmorty.domain.characters.CharacterObject
@@ -36,7 +37,7 @@ object CharactersRepositoryImpl : CharactersRepository {
 
     override fun getAllCharacters(arrayList: ArrayList<String>?): LiveData<List<CharacterObject>> {
         return mapper.mapListDataBaseModelToListEntity(
-            if (arrayList == null){
+            if (arrayList == null) {
                 charactersInfoDao.getAllCharactersInfoList()
             } else {
                 charactersInfoDao.getRequiredCharactersInfoList(arrayList)
@@ -53,8 +54,11 @@ object CharactersRepositoryImpl : CharactersRepository {
         charactersInfoDao.addCharacterList(characterList)
     }
 
-    override fun getFilteredCharacter() {
-        TODO("Not yet implemented")
+    override fun getFilteredCharacters(filterParameters: Pair<String, String>): LiveData<List<CharacterObject>> {
+        return mapper.mapListDataBaseModelToListEntity(
+            charactersInfoDao.getFilteredCharactersInfoList(
+                filterParameters.second.toString()
+            )
+        )
     }
-
 }

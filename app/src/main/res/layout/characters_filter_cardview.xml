@@ -1,92 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <CheckBox
-        android:id="@+id/characters_filter_name_checkBox"
-        android:layout_width="match_parent"
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:checked="false"
-        android:text="@string/filter_option_name" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/characters_filter_name_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:minHeight="48dp"
-        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+        <RadioButton
+            android:id="@+id/characters_filter_name_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/filter_option_name" />
 
-    <CheckBox
-        android:id="@+id/characters_filter_status_checkBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:text="@string/filter_option_status"
-        tools:ignore="SpeakableTextPresentCheck" />
+        <EditText
+            android:id="@+id/characters_filter_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
-    <AutoCompleteTextView
-        android:id="@+id/characters_filter_status_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+        <RadioButton
+            android:id="@+id/characters_filter_status_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/filter_option_status"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-    <CheckBox
-        android:id="@+id/characters_filter_species_checkBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:text="@string/filter_option_species" />
+        <AutoCompleteTextView
+            android:id="@+id/characters_filter_status_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
-    <EditText
-        android:id="@+id/characters_filter_species_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:minHeight="48dp"
-        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+        <RadioButton
+            android:id="@+id/characters_filter_species_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/filter_option_species" />
 
-    <CheckBox
-        android:id="@+id/characters_filter_type_checkBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:text="@string/filter_option_type" />
+        <EditText
+            android:id="@+id/characters_filter_species_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
-    <EditText
-        android:id="@+id/characters_filter_type_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:minHeight="48dp"
-        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+        <RadioButton
+            android:id="@+id/characters_filter_type_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/filter_option_type" />
 
-    <CheckBox
-        android:id="@+id/characters_filter_gender_checkBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:text="@string/filter_option_gender"
-        tools:ignore="SpeakableTextPresentCheck" />
+        <EditText
+            android:id="@+id/characters_filter_type_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
-    <AutoCompleteTextView
-        android:id="@+id/characters_filter_gender_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+        <RadioButton
+            android:id="@+id/characters_filter_gender_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/filter_option_gender"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <AutoCompleteTextView
+            android:id="@+id/characters_filter_gender_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+    </RadioGroup>
 
     <Button
-        android:id="@+id/characters_filter_apply_button"
+        android:id="@+id/filterCancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"/>
+
+    <Button
+        android:id="@+id/filter_apply_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         android:text="@string/filter_option_apply_button"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

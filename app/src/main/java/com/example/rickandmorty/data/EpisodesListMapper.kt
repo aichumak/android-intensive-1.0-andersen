@@ -22,7 +22,7 @@ class EpisodesListMapper {
         name = episodeInfoModel.name,
         air_date = episodeInfoModel.air_date,
         episode = episodeInfoModel.episode,
-        characters = ArrayList(episodeInfoModel.characters.trim().split(",")),
+        characters = ArrayList(episodeInfoModel.characters.replace(" ", "").split(",")),
         url = episodeInfoModel.url,
         created = episodeInfoModel.created
     )

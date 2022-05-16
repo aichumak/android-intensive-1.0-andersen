@@ -3,6 +3,7 @@ package com.example.rickandmorty.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import com.example.rickandmorty.R
 
 class FragmentActivity : AppCompatActivity(), FragmentNavigator {
@@ -48,6 +49,13 @@ class FragmentActivity : AppCompatActivity(), FragmentNavigator {
 
     override fun goToPrevFragment() {
         supportFragmentManager.popBackStack()
+    }
+
+    override fun goToFilterDialogForResult(viewModel: ViewModel?) {
+        viewModel?.let {
+        val filterDialog = FilterDialog(viewModel)
+        filterDialog.show(supportFragmentManager, "filter_dialog")
+        }
     }
 
     private fun runFragment(fragment: Fragment){

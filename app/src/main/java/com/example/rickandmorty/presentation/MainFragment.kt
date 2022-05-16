@@ -41,17 +41,18 @@ class MainFragment : Fragment(R.layout.fragment_navigation) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        childFragmentManager.beginTransaction().run {
-            val fragment = CharacterListFragment.newInstance(null)
-            replace(
-                R.id.list_view_fragment_container,
-                fragment,
-                CharacterListFragment.FRAGMENT_CHARACTER_LIST
-            )
-            //addToBackStack(CharacterListFragment.FRAGMENT_CHARACTER_LIST)
-            commit()
-
-        }
+//        childFragmentManager.beginTransaction().run {
+//            val fragment = CharacterListFragment.newInstance(null)
+//            replace(
+//                R.id.list_view_fragment_container,
+//                fragment,
+//                CharacterListFragment.FRAGMENT_CHARACTER_LIST
+//            )
+//            //addToBackStack(CharacterListFragment.FRAGMENT_CHARACTER_LIST)
+//            commit()
+//
+//        }
+        runFragment(CharacterListFragment.newInstance(null))
 
         binding?.navigationView?.setOnItemSelectedListener {
             when (it.itemId) {
