@@ -1,5 +1,6 @@
 package com.example.rickandmorty.presentation
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -33,13 +34,14 @@ class LocationFragment: Fragment(R.layout.fragment_location_details) {
         return binding?.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[LocationViewModel::class.java]
         viewModel?.location?.observe(viewLifecycleOwner) {
-            binding?.locationDetailsName?.text = it.name
-            binding?.locationDetailsType?.text = it.type
-            binding?.locationDetailsDimension?.text = it.dimension
+            binding?.locationDetailsName?.text = ("Name: ${it.name}")
+            binding?.locationDetailsType?.text = ("Type: ${it.type}")
+            binding?.locationDetailsDimension?.text = ("Dimension: ${it.dimension}")
             childFragmentManager.beginTransaction().run {
                 val fragment = CharacterListFragment.newInstance(it.residents)
                 childFragmentManager.beginTransaction().run {

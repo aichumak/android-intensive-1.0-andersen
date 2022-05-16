@@ -1,5 +1,6 @@
 package com.example.rickandmorty.presentation
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -32,6 +33,7 @@ class CharacterFragment : Fragment(R.layout.fragment_character_details) {
         return binding?.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
@@ -49,13 +51,13 @@ class CharacterFragment : Fragment(R.layout.fragment_character_details) {
                         return
                     }
                 })
-            binding?.characterDetailsName?.text = it.name
-            binding?.characterDetailsStatus?.text = it.status
-            binding?.characterDetailsSpecies?.text = it.species
-            binding?.characterDetailsType?.text = it.type
-            binding?.characterDetailsGender?.text = it.gender
-            binding?.characterDetailsOrigin?.text = it.origin.name
-            binding?.characterDetailsLocation?.text = it.location.name
+            binding?.characterDetailsName?.text = ("Name: ${it.name}")
+            binding?.characterDetailsStatus?.text = ("Status: ${it.status}")
+            binding?.characterDetailsSpecies?.text = ("Species: ${it.species}")
+            binding?.characterDetailsType?.text = ("Type: ${it.type}")
+            binding?.characterDetailsGender?.text = ("Name: ${it.gender}")
+            binding?.characterDetailsOrigin?.text = ("Origin: ${it.origin.name}")
+            binding?.characterDetailsLocation?.text = ("Location: ${it.location.name}")
             childFragmentManager.beginTransaction().run {
                 val fragment = EpisodeListFragment.newInstance(it.episode)
                 childFragmentManager.beginTransaction().run {

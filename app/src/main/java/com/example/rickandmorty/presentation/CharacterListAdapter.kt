@@ -1,5 +1,6 @@
 package com.example.rickandmorty.presentation
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.rickandmorty.R
@@ -26,13 +27,14 @@ class CharacterListAdapter(
         return CharacterViewHolder(characterView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         val character = getItem(position)
         with(holder) {
-            name.text = character.name
-            species.text = character.species
-            status.text = character.status
-            gender.text = character.gender
+            name.text = ("Name: ${character.name}")
+            species.text = ("Species: ${character.species}")
+            status.text = ("Status: ${character.status}")
+            gender.text = ("Gender: ${character.gender}")
             itemView.setOnClickListener {
                 fragmentNavigator?.goToNextFragment(
                     FragmentsNames.CHARACTER_DETAILS_FRAGMENT,

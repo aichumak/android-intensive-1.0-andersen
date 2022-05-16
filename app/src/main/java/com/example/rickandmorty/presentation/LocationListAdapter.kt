@@ -1,5 +1,6 @@
 package com.example.rickandmorty.presentation
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.rickandmorty.R
@@ -25,12 +26,13 @@ class LocationListAdapter(
         return LocationViewHolder(locationView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: LocationViewHolder, position: Int) {
         val location = getItem(position)
         with(holder) {
-            name.text = location.name
-            type.text = location.type
-            dimension.text = location.dimension
+            name.text = ("Name: ${location.name}")
+            type.text = ("Type: ${location.type}")
+            dimension.text = ("Dimension: ${location.dimension}")
             itemView.setOnClickListener {
                 fragmentNavigator?.goToNextFragment(
                     FragmentsNames.LOCATION_DETAILS_FRAGMENT,

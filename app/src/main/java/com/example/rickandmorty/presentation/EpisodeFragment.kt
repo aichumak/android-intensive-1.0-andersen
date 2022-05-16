@@ -1,5 +1,6 @@
 package com.example.rickandmorty.presentation
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -33,13 +34,14 @@ class EpisodeFragment : Fragment(R.layout.fragment_episode_details) {
         return binding?.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[EpisodeViewModel::class.java]
         viewModel?.episode?.observe(viewLifecycleOwner) {
-            binding?.episodeDetailsName?.text = it.name
-            binding?.episodeDetailsAirDate?.text = it.air_date
-            binding?.episodeDetailsEpisode?.text = it.episode
+            binding?.episodeDetailsName?.text = ("Name: ${it.name}")
+            binding?.episodeDetailsAirDate?.text = ("Air date: ${it.air_date}")
+            binding?.episodeDetailsEpisode?.text = ("Episode: ${it.episode}")
             childFragmentManager.beginTransaction().run {
                 val fragment = CharacterListFragment.newInstance(it.characters)
                 childFragmentManager.beginTransaction().run {
