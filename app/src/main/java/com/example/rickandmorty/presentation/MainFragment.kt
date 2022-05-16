@@ -14,13 +14,10 @@ class MainFragment : Fragment(R.layout.fragment_navigation) {
     private var viewModel: MainViewModel? = null
     private var binding: FragmentNavigationBinding? = null
     private var fragmentNavigator: FragmentNavigator? = null
-    //private var clickListener: ClickListener? = null
-    // private var contactListAdapter: ContactListAdapter? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is FragmentNavigator) fragmentNavigator = context
-        //if (context is ClickListener) clickListener = context
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +38,7 @@ class MainFragment : Fragment(R.layout.fragment_navigation) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         runFragment(CharacterListFragment.newInstance(null))
+
         binding?.navigationView?.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_characters_list -> {
@@ -68,7 +66,7 @@ class MainFragment : Fragment(R.layout.fragment_navigation) {
                 fragment,
                 fragmentTag
             )
-            //addToBackStack(fragmentTag)
+            addToBackStack(fragmentTag)
             commit()
         }
     }
