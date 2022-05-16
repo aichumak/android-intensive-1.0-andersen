@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/blue"
                 android:text="@string/tv_default_text" />
 
             <TextView
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/blue"
                 android:text="@string/tv_default_text" />
 
             <TextView
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/blue"
                 android:text="@string/tv_default_text" />
 
         </LinearLayout>

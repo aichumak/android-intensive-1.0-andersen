@@ -28,6 +28,7 @@ class FragmentActivity : AppCompatActivity(), FragmentNavigator {
             val tag = backEntry.name
             supportFragmentManager.popBackStack(tag, 0)
         }
+
     }
 
     override fun onBackPressed() {

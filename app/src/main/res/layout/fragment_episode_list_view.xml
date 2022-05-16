@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:text="@string/tv_default_text"
-                android:textColor="@color/text_color" />
+                android:textColor="@color/blue" />
 
             <TextView
                 android:id="@+id/episode_details_episode"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:text="@string/tv_default_text"
-                android:textColor="@color/text_color" />
+                android:textColor="@color/blue" />
 
             <TextView
                 android:id="@+id/episode_details_air_date"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:text="@string/tv_default_text"
-                android:textColor="@color/text_color" />
+                android:textColor="@color/blue" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
