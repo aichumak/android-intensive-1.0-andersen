@@ -16,14 +16,11 @@ class EpisodeListViewModel(application: Application) : AndroidViewModel(applicat
     private val compositeDisposable = CompositeDisposable()
     private val repository = EpisodesRepositoryImpl
     private val getAllEpisodesUseCase = GetAllEpisodesUseCase(repository)
-    private var arrayEpisodes: ArrayList<String>? = null
 
-    val episodesList = MutableLiveData<List<EpisodeObject>>()
-    private val prevEpisodesList = MutableLiveData<List<EpisodeObject>>()
+    var episodesList: LiveData<List<EpisodeObject>>? = null
 
     fun updateArrayEpisodes(arrayList: ArrayList<String>?) {
-        arrayEpisodes = arrayList
-        episodesList.value = getAllEpisodesUseCase.getAllEpisodes(arrayEpisodes).value
+        episodesList = getAllEpisodesUseCase.getAllEpisodes(arrayList)
     }
 
     fun getFilteredData(filterParameters: Pair<String, String>?) {
@@ -32,11 +29,6 @@ class EpisodeListViewModel(application: Application) : AndroidViewModel(applicat
         } else {
             //getFilteredCharactersUseCase.getFilteredCharacters(filterParameters)
         }
-    }
-
-    fun replaceListForSearch(newList: TreeSet<EpisodeObject>) {
-        prevEpisodesList.value = episodesList.value
-        episodesList.value = newList.toList()
     }
 
     override fun onCleared() {

@@ -17,27 +17,20 @@ class CharacterListViewModel(application: Application) : AndroidViewModel(applic
     private val repository = CharactersRepositoryImpl
     private val getAllCharactersUseCase = GetAllCharactersUseCase(repository)
     private val getFilteredCharactersUseCase = GetFilteredCharactersUseCase(repository)
-    private var arrayCharacters: ArrayList<String>? = null
 
-    val charactersList = MutableLiveData<List<CharacterObject>>()
-    private val prevCharactersList = MutableLiveData<List<CharacterObject>>()
+    var charactersList: LiveData<List<CharacterObject>>? = null
 
     fun updateRequiredCharacters(arrayList: ArrayList<String>?) {
-        arrayCharacters = arrayList
-        charactersList.value = getAllCharactersUseCase.getAllCharacters(arrayCharacters).value // as MutableLiveData<List<CharacterObject>>
+       charactersList = getAllCharactersUseCase.getAllCharacters(arrayList)
     }
 
     fun getFilteredData(filterParameters: Pair<String, String>?) {
-        charactersList.value = if (filterParameters == null) {
-            getAllCharactersUseCase.getAllCharacters(filterParameters).value
+        charactersList = if (filterParameters == null) {
+            getAllCharactersUseCase.getAllCharacters(filterParameters)
         } else {
-            getFilteredCharactersUseCase.getFilteredCharacters(filterParameters).value
+            val a = getFilteredCharactersUseCase.getFilteredCharacters(filterParameters)
+            a
         }
-    }
-
-    fun replaceListForSearch(newList: TreeSet<CharacterObject>) {
-        prevCharactersList.value = charactersList.value
-        charactersList.value = newList.toList()
     }
 
     override fun onCleared() {

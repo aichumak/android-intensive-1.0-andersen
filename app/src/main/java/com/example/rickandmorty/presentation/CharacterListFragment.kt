@@ -22,7 +22,6 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is FragmentNavigator) fragmentNavigator = context
-        //if (context is ClickListener) clickListener = context
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,18 +45,19 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
             viewModel?.updateRequiredCharacters(it.getStringArrayList(CHARACTERS_ARRAY))
             if (it.getStringArrayList(CHARACTERS_ARRAY) != null) {
                 binding?.filterApplyButton?.hide()
-                binding?.filterApplyButton?.setOnClickListener {
-                    fragmentNavigator?.goToFilterDialogForResult(viewModel)
-                }
             }
-        }
-        val listAdapter = CharacterListAdapter(fragmentNavigator)
-        binding?.let {
-            it.rvCharacterList.layoutManager = GridLayoutManager(context, 2)
-            it.rvCharacterList.adapter = listAdapter
-        }
-        viewModel?.charactersList?.observe(viewLifecycleOwner) {
-            listAdapter.submitList(it)
+            val listAdapter =
+                CharacterListAdapter(fragmentNavigator, it.getStringArrayList(CHARACTERS_ARRAY))
+            binding?.let { itBinding ->
+                itBinding.rvCharacterList.layoutManager = GridLayoutManager(context, 2)
+                itBinding.rvCharacterList.adapter = listAdapter
+            }
+            viewModel?.charactersList?.observe(viewLifecycleOwner) { itList ->
+                listAdapter.submitList(itList)
+            }
+            binding?.filterApplyButton?.setOnClickListener {
+                fragmentNavigator?.goToFilterDialogForResult(viewModel)
+            }
         }
     }
 
@@ -73,14 +73,14 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
                 }
 
                 override fun onQueryTextChange(p0: String?): Boolean {
-                    it.updateRequiredCharacters(null)
+                    //it.updateRequiredCharacters(null)
                     val list = it.charactersList
                     val searchText = p0?.lowercase(Locale.getDefault()) ?: ""
                     val newList =
                         sortedSetOf<CharacterObject>({ o1, o2 -> o1.id.compareTo(o2.id) })
 
                     if (searchText.isNotEmpty()) {
-                        list.value?.forEach { itValue ->
+                        list?.value?.forEach { itValue ->
                             if (itValue.name.lowercase(Locale.getDefault())
                                     .contains(searchText) ||
                                 itValue.species.lowercase(Locale.getDefault())
@@ -92,7 +92,7 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
                                 newList.add(itValue)
                             }
                         }
-                        it.replaceListForSearch(newList)
+                        //it.replaceListForSearch(newList)
                     }
                     return false
                 }

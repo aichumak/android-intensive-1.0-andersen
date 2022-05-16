@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.rickandmorty.data.LocationsRepositoryImpl
+import com.example.rickandmorty.domain.characters.CharacterObject
 import com.example.rickandmorty.domain.episodes.EpisodeObject
 import com.example.rickandmorty.domain.locations.GetAllLocationsUseCase
 import com.example.rickandmorty.domain.locations.LocationObject
@@ -18,11 +19,11 @@ class LocationListViewModel(application: Application) : AndroidViewModel(applica
     //private val getSingleLocationUseCase = GetSingleLocationUseCase(repository)
     //private val getFilteredLocationUseCase = GetFilteredLocationUseCase(repository)
 
-    val locationsList = MutableLiveData<List<LocationObject>>()
+    var locationsList = getAllLocationsUseCase.getAllLocations()
     private val prevLocationsList = MutableLiveData<List<LocationObject>>()
 
     fun updateRequiredLocations() {
-        locationsList.value = getAllLocationsUseCase.getAllLocations().value
+        locationsList = getAllLocationsUseCase.getAllLocations()
     }
 
     fun getFilteredData(filterParameters: Pair<String, String>?) {
@@ -35,7 +36,13 @@ class LocationListViewModel(application: Application) : AndroidViewModel(applica
 
     fun replaceListForSearch(newList: TreeSet<LocationObject>) {
         prevLocationsList.value = locationsList.value
-        locationsList.value = newList.toList()
+        locationsList = castToLiveDataList(newList)
+    }
+
+    private fun castToLiveDataList(newList: TreeSet<LocationObject>): LiveData<List<LocationObject>> {
+        val liveData = MutableLiveData<List<LocationObject>>()
+        liveData.value = newList.toList()
+        return liveData
     }
 
     override fun onCleared() {

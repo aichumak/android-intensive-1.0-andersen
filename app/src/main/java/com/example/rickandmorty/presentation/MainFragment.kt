@@ -40,20 +40,7 @@ class MainFragment : Fragment(R.layout.fragment_navigation) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-
-//        childFragmentManager.beginTransaction().run {
-//            val fragment = CharacterListFragment.newInstance(null)
-//            replace(
-//                R.id.list_view_fragment_container,
-//                fragment,
-//                CharacterListFragment.FRAGMENT_CHARACTER_LIST
-//            )
-//            //addToBackStack(CharacterListFragment.FRAGMENT_CHARACTER_LIST)
-//            commit()
-//
-//        }
         runFragment(CharacterListFragment.newInstance(null))
-
         binding?.navigationView?.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_characters_list -> {
@@ -75,7 +62,6 @@ class MainFragment : Fragment(R.layout.fragment_navigation) {
 
     private fun runFragment(fragment: Fragment) {
         val fragmentTag = getFragmentTag(fragment)
-
         childFragmentManager.beginTransaction().run {
             replace(
                 R.id.list_view_fragment_container,
