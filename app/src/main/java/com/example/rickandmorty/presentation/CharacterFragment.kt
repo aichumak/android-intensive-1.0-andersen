@@ -51,22 +51,38 @@ class CharacterFragment : Fragment(R.layout.fragment_character_details) {
                         return
                     }
                 })
-            binding?.characterDetailsName?.text = ("Name: ${it.name}")
-            binding?.characterDetailsStatus?.text = ("Status: ${it.status}")
-            binding?.characterDetailsSpecies?.text = ("Species: ${it.species}")
-            binding?.characterDetailsType?.text = ("Type: ${it.type}")
-            binding?.characterDetailsGender?.text = ("Name: ${it.gender}")
-            binding?.characterDetailsOrigin?.text = ("Origin: ${it.origin.name}")
-            binding?.characterDetailsLocation?.text = ("Location: ${it.location.name}")
-            childFragmentManager.beginTransaction().run {
-                val fragment = EpisodeListFragment.newInstance(it.episode)
-                childFragmentManager.beginTransaction().run {
-                    replace(
-                        R.id.character_details_fragment_container,
-                        fragment,
-                        CharacterListFragment.FRAGMENT_CHARACTER_LIST
+            binding?.let { itBinding ->
+                itBinding.characterDetailsName.text = ("Name: ${it.name}")
+                itBinding.characterDetailsStatus.text = ("Status: ${it.status}")
+                itBinding.characterDetailsSpecies.text = ("Species: ${it.species}")
+                itBinding.characterDetailsType.text = ("Type: ${it.type}")
+                itBinding.characterDetailsGender.text = ("Name: ${it.gender}")
+                itBinding.characterDetailsOrigin.text = ("Origin: ${it.origin.name}")
+                itBinding.characterDetailsOrigin.setOnClickListener { itView ->
+                    fragmentNavigator?.goToNextFragment(
+                        FragmentsNames
+                            .LOCATION_DETAILS_FRAGMENT,
+                        it.origin.url.substringAfterLast("/").toInt()
                     )
-                    commit()
+                }
+                itBinding.characterDetailsLocation.text = ("Location: ${it.location.name}")
+                itBinding.characterDetailsLocation.setOnClickListener { itView ->
+                    fragmentNavigator?.goToNextFragment(
+                        FragmentsNames.LOCATION_DETAILS_FRAGMENT,
+                        it.location.url.substringAfterLast("/").toInt()
+                    )
+                }
+
+                childFragmentManager.beginTransaction().run {
+                    val fragment = EpisodeListFragment.newInstance(it.episode)
+                    childFragmentManager.beginTransaction().run {
+                        replace(
+                            R.id.character_details_fragment_container,
+                            fragment,
+                            CharacterListFragment.FRAGMENT_CHARACTER_LIST
+                        )
+                        commit()
+                    }
                 }
             }
         }

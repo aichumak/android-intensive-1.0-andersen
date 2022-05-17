@@ -18,6 +18,11 @@ interface LocationInfoDao {
     @Query("SELECT * FROM locations_list WHERE id=:locationId")
     suspend fun getLocationInfo(locationId: Int): LocationInfoModel
 
+    @Query("SELECT * FROM locations_list WHERE url LIKE :url LIMIT 1")
+    suspend fun getLocationInfoFromUrl(url: String): LocationInfoModel
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLocationsInfo(locationsInfoList: List<LocationInfoModel>)
+
+
 }

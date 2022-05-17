@@ -24,7 +24,6 @@ object LocationsRepositoryImpl : LocationsRepository {
                             addLocationList(mapper.mapListEntityToListDataBaseModel(results))
                             Log.d("tst", "Load $i")
                         }
-
                     }
                 }, {
 
