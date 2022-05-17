@@ -1,7 +1,6 @@
 package com.example.rickandmorty.data
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import com.example.rickandmorty.api.CharactersApiFactory
 import com.example.rickandmorty.data.pojo.CharacterInfoModel
 import com.example.rickandmorty.domain.characters.CharacterObject
@@ -34,7 +33,7 @@ object CharactersRepositoryImpl : CharactersRepository {
         }
     }
 
-    override fun getAllCharacters(arrayList: ArrayList<String>?): LiveData<List<CharacterObject>> {
+    override suspend fun getAllCharacters(arrayList: ArrayList<String>?): List<CharacterObject> {
         return mapper.mapListDataBaseModelToListEntity(
             if (arrayList == null) {
                 charactersInfoDao.getAllCharactersInfoList()
@@ -53,12 +52,17 @@ object CharactersRepositoryImpl : CharactersRepository {
         charactersInfoDao.addCharacterList(characterList)
     }
 
-    override fun getFilteredCharacters(filterParameters: Pair<String, String>): LiveData<List<CharacterObject>> {
+    override suspend fun getFilteredCharacters(filterParameters: Pair<String, String>): List<CharacterObject> {
         return mapper.mapListDataBaseModelToListEntity(
-            charactersInfoDao.getFilteredCharactersInfoList(
-                filterParameters.first.toString(),
-                filterParameters.second.toString()
-            )
+            when (filterParameters.first) {
+                "name" -> charactersInfoDao.getNameFilteredCharactersInfoList(filterParameters.second)
+                "status" -> charactersInfoDao.getStatusFilteredCharactersInfoList(filterParameters.second)
+                "species" -> charactersInfoDao.getSpeciesFilteredCharactersInfoList(filterParameters.second)
+                "type" -> charactersInfoDao.getTypeFilteredCharactersInfoList(filterParameters.second)
+                "gender" -> charactersInfoDao.getGenderFilteredCharactersInfoList(filterParameters.second)
+                else -> throw Exception()
+            }
         )
     }
+
 }

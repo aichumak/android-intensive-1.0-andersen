@@ -40,23 +40,23 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
         arguments?.let {
-            viewModel?.updateRequiredCharacters(it.getStringArrayList(CHARACTERS_ARRAY))
-            if (it.getStringArrayList(CHARACTERS_ARRAY) != null) {
-                binding?.filterApplyButton?.hide()
-            }
             val listAdapter =
                 CharacterListAdapter(fragmentNavigator, it.getStringArrayList(CHARACTERS_ARRAY))
-            binding?.let { itBinding ->
-                itBinding.rvCharacterList.layoutManager = GridLayoutManager(context, 2)
-                itBinding.rvCharacterList.adapter = listAdapter
-            }
+            viewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
+            viewModel?.updateRequiredCharacters(it.getStringArrayList(CHARACTERS_ARRAY))
             viewModel?.charactersList?.observe(viewLifecycleOwner) { itList ->
                 listAdapter.submitList(itList)
             }
-            binding?.filterApplyButton?.setOnClickListener {
-                fragmentNavigator?.goToFilterDialogForResult(viewModel)
+            binding?.let { itBinding ->
+                itBinding.rvCharacterList.layoutManager = GridLayoutManager(context, 2)
+                itBinding.rvCharacterList.adapter = listAdapter
+                itBinding.filterApplyButton.setOnClickListener {
+                    fragmentNavigator?.goToFilterDialogForResult(viewModel)
+                }
+                if (it.getStringArrayList(CHARACTERS_ARRAY) != null) {
+                    itBinding.filterApplyButton.hide()
+                }
             }
         }
     }
