@@ -17,9 +17,9 @@ class CharacterViewModel : ViewModel() {
 
     val character = MutableLiveData<CharacterObject>()
 
-    fun getSingleCharacter(position: Int) {
+    fun getSingleCharacter(itemId: Int) {
         viewModelScope.launch {
-            val item = getSingleCharacter.getCharacter(position + 1)
+            val item = getSingleCharacter.getCharacter(itemId)
             character.value = item
         }
     }

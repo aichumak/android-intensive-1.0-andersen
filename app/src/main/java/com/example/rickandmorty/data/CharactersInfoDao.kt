@@ -1,7 +1,6 @@
 package com.example.rickandmorty.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -22,9 +21,12 @@ interface CharactersInfoDao {
     fun getRequiredCharactersInfoList(arrayList: ArrayList<String>): LiveData<List<CharacterInfoModel>>
 
     @Query(
-        "SELECT * FROM characters_list WHERE gender=:second" //ORDER BY id"
+        "SELECT * FROM characters_list WHERE :fieldToSearch LIKE :valueForSearch ORDER BY id"
     )
-    fun getFilteredCharactersInfoList(second: String): LiveData<List<CharacterInfoModel>>
+    fun getFilteredCharactersInfoList(
+        fieldToSearch: String,
+        valueForSearch: String
+    ): LiveData<List<CharacterInfoModel>>
 
     @Query("SELECT * FROM characters_list WHERE id=:characterId")
     suspend fun getCharacterInfo(characterId: Int): CharacterInfoModel

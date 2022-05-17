@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.rickandmorty.data.pojo.CharacterInfoModel
 import com.example.rickandmorty.data.pojo.LocationInfo
 import com.example.rickandmorty.data.pojo.LocationInfoModel
 
@@ -20,6 +21,12 @@ interface LocationInfoDao {
 
     @Query("SELECT * FROM locations_list WHERE url LIKE :url LIMIT 1")
     suspend fun getLocationInfoFromUrl(url: String): LocationInfoModel
+
+    @Query("SELECT * FROM locations_list WHERE :fieldToSearch LIKE :valueForSearch")
+    fun getFilteredLocationsInfoList(
+        fieldToSearch: String,
+        valueForSearch: String
+    ): LiveData<List<LocationInfoModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLocationsInfo(locationsInfoList: List<LocationInfoModel>)

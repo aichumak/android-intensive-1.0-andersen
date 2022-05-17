@@ -46,7 +46,7 @@ object LocationsRepositoryImpl : LocationsRepository {
         locationsInfoDao.insertLocationsInfo(locationList)
     }
 
-    override fun getFilteredLocations() {
+    override fun getFilteredLocations(filterParameter: Pair<String, String>): LiveData<List<LocationObject>> {
         TODO("Not yet implemented")
     }
 }

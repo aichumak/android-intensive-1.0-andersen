@@ -6,8 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.rickandmorty.data.EpisodesRepositoryImpl
 import com.example.rickandmorty.domain.characters.CharacterObject
+import com.example.rickandmorty.domain.characters.GetFilteredCharactersUseCase
 import com.example.rickandmorty.domain.episodes.EpisodeObject
 import com.example.rickandmorty.domain.episodes.GetAllEpisodesUseCase
+import com.example.rickandmorty.domain.episodes.GetFilteredEpisodesUseCase
 import io.reactivex.disposables.CompositeDisposable
 import java.util.*
 import kotlin.collections.ArrayList
@@ -16,6 +18,7 @@ class EpisodeListViewModel(application: Application) : AndroidViewModel(applicat
     private val compositeDisposable = CompositeDisposable()
     private val repository = EpisodesRepositoryImpl
     private val getAllEpisodesUseCase = GetAllEpisodesUseCase(repository)
+    private val getFilteredEpisodes = GetFilteredEpisodesUseCase(repository)
 
     var episodesList: LiveData<List<EpisodeObject>>? = null
 
@@ -24,10 +27,10 @@ class EpisodeListViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     fun getFilteredData(filterParameters: Pair<String, String>?) {
-        if (filterParameters == null) {
-            //charactersList = getAllCharactersUseCase.getAllCharacters(arrayCharacters)
+        episodesList = if (filterParameters == null) {
+            getAllEpisodesUseCase.getAllEpisodes(null)
         } else {
-            //getFilteredCharactersUseCase.getFilteredCharacters(filterParameters)
+            getFilteredEpisodes.getFilteredEpisodes(filterParameters)
         }
     }
 

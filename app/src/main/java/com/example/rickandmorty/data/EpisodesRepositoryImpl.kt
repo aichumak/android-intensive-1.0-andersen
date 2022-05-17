@@ -51,7 +51,7 @@ object EpisodesRepositoryImpl : EpisodesRepository {
         episodesInfoDao.insertEpisodesInfo(episodeList)
     }
 
-    override fun getFilteredEpisodes() {
+    override fun getFilteredEpisodes(filterParameter: Pair<String, String>): LiveData<List<EpisodeObject>> {
         TODO("Not yet implemented")
     }
 }

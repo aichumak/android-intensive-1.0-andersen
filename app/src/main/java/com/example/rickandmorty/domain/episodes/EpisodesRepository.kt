@@ -7,5 +7,5 @@ interface EpisodesRepository {
     fun addEpisodeList(episodeList: List<EpisodeInfoModel>)
     fun getAllEpisodes(arrayList: ArrayList<String>?): LiveData<List<EpisodeObject>>
     suspend fun getSingleEpisode(id: Int): EpisodeObject
-    fun getFilteredEpisodes()
+    fun getFilteredEpisodes(filterParameter: Pair<String, String>): LiveData<List<EpisodeObject>>
 }

@@ -23,7 +23,6 @@ class LocationListFragment: Fragment(R.layout.fragment_location_list) {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is FragmentNavigator) fragmentNavigator = context
-        //if (context is ClickListener) clickListener = context
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,7 +87,7 @@ class LocationListFragment: Fragment(R.layout.fragment_location_list) {
                                 newList.add(itValue)
                             }
                         }
-                        it.replaceListForSearch(newList)
+                        //it.replaceListForSearch(newList)
                     }
                     return false
                 }
