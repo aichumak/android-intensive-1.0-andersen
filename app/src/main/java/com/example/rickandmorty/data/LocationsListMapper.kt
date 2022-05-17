@@ -1,7 +1,5 @@
 package com.example.rickandmorty.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import com.example.rickandmorty.data.pojo.LocationInfoModel
 import com.example.rickandmorty.domain.locations.LocationObject
 
@@ -27,10 +25,8 @@ class LocationsListMapper {
         created = locationInfoModel.created
     )
 
-    fun mapListDataBaseModelToListEntity(liveDataList: LiveData<List<LocationInfoModel>>) =
-        liveDataList.map {
-            it.map { location -> mapDataBaseModelToEntity(location) }
-        }
+    fun mapListDataBaseModelToListEntity(liveDataList: List<LocationInfoModel>) =
+        liveDataList.map { location -> mapDataBaseModelToEntity(location) }
 
     fun mapListEntityToListDataBaseModel(entityList: List<LocationObject>) =
         entityList.map { location -> mapEntityToDataBaseModel(location) }

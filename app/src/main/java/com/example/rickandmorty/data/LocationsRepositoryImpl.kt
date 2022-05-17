@@ -1,7 +1,6 @@
 package com.example.rickandmorty.data
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import com.example.rickandmorty.api.LocationsApiFactory
 import com.example.rickandmorty.data.pojo.LocationInfoModel
 import com.example.rickandmorty.domain.locations.LocationObject
@@ -33,7 +32,7 @@ object LocationsRepositoryImpl : LocationsRepository {
         }
     }
 
-    override fun getAllLocations(): LiveData<List<LocationObject>> {
+    override suspend fun getAllLocations(): List<LocationObject> {
         return mapper.mapListDataBaseModelToListEntity(locationsInfoDao.getLocationsInfoList())
     }
 
@@ -46,7 +45,16 @@ object LocationsRepositoryImpl : LocationsRepository {
         locationsInfoDao.insertLocationsInfo(locationList)
     }
 
-    override fun getFilteredLocations(filterParameter: Pair<String, String>): LiveData<List<LocationObject>> {
-        TODO("Not yet implemented")
+    override suspend fun getFilteredLocations(filterParameters: Pair<String, String>): List<LocationObject> {
+        return mapper.mapListDataBaseModelToListEntity(
+            when (filterParameters.first) {
+                "name" -> locationsInfoDao.getNameFilteredLocationsInfoList(filterParameters.second)
+                "type" -> locationsInfoDao.getTypeFilteredLocationsInfoList(filterParameters.second)
+                "dimension" -> locationsInfoDao.getDimensionFilteredLocationsInfoList(
+                    filterParameters.second
+                )
+                else -> throw Exception()
+            }
+        )
     }
 }

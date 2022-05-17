@@ -1,7 +1,5 @@
 package com.example.rickandmorty.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import com.example.rickandmorty.data.pojo.EpisodeInfoModel
 import com.example.rickandmorty.domain.episodes.EpisodeObject
 
@@ -27,10 +25,8 @@ class EpisodesListMapper {
         created = episodeInfoModel.created
     )
 
-    fun mapListDataBaseModelToListEntity(liveDataList: LiveData<List<EpisodeInfoModel>>) =
-        liveDataList.map {
-            it.map { episode -> mapDataBaseModelToEntity(episode) }
-        }
+    fun mapListDataBaseModelToListEntity(liveDataList: List<EpisodeInfoModel>) =
+        liveDataList.map { episode -> mapDataBaseModelToEntity(episode) }
 
     fun mapListEntityToListDataBaseModel(entityList: List<EpisodeObject>) =
         entityList.map { episode -> mapEntityToDataBaseModel(episode) }

@@ -47,15 +47,15 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
                 binding?.filterApplyButton?.hide()
             }
             val listAdapter = EpisodeListAdapter(fragmentNavigator)
-            binding?.let {
-                it.rvEpisodeList.layoutManager = GridLayoutManager(context, 2)
-                it.rvEpisodeList.adapter = listAdapter
+            binding?.let { itBinding ->
+                itBinding.rvEpisodeList.layoutManager = GridLayoutManager(context, 2)
+                itBinding.rvEpisodeList.adapter = listAdapter
+                itBinding.filterApplyButton.setOnClickListener {
+                    fragmentNavigator?.goToFilterDialogForResult(viewModel)
+                }
             }
-            viewModel?.episodesList?.observe(viewLifecycleOwner) {
-                listAdapter.submitList(it)
-            }
-            binding?.filterApplyButton?.setOnClickListener {
-                fragmentNavigator?.goToFilterDialogForResult(viewModel)
+            viewModel?.episodesList?.observe(viewLifecycleOwner) { itList ->
+                listAdapter.submitList(itList)
             }
         }
     }
@@ -70,6 +70,7 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
                 override fun onQueryTextSubmit(p0: String?): Boolean {
                     return false
                 }
+
                 override fun onQueryTextChange(p0: String?): Boolean {
                     it.updateArrayEpisodes(null)
                     val list = it.episodesList

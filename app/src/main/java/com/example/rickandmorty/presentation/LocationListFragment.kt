@@ -9,12 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentLocationListBinding
-import com.example.rickandmorty.domain.characters.CharacterObject
 import com.example.rickandmorty.domain.locations.LocationObject
 import java.util.*
-import kotlin.collections.ArrayList
 
-class LocationListFragment: Fragment(R.layout.fragment_location_list) {
+class LocationListFragment : Fragment(R.layout.fragment_location_list) {
 
     private var binding: FragmentLocationListBinding? = null
     private var viewModel: LocationListViewModel? = null
@@ -42,19 +40,18 @@ class LocationListFragment: Fragment(R.layout.fragment_location_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[LocationListViewModel::class.java]
+        viewModel?.updateRequiredLocations()
         val listAdapter = LocationListAdapter(fragmentNavigator)
-
         binding?.let {
             it.rvLocationList.layoutManager = GridLayoutManager(context, 2)
             it.rvLocationList.adapter = listAdapter
+            it.filterApplyButton.setOnClickListener {
+                fragmentNavigator?.goToFilterDialogForResult(viewModel)
+            }
         }
         viewModel?.locationsList?.observe(viewLifecycleOwner) {
             listAdapter.submitList(it)
         }
-        binding?.filterApplyButton?.setOnClickListener {
-                fragmentNavigator?.goToFilterDialogForResult(viewModel)
-        }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -69,7 +66,7 @@ class LocationListFragment: Fragment(R.layout.fragment_location_list) {
                 }
 
                 override fun onQueryTextChange(p0: String?): Boolean {
-                    it.updateRequiredLocations()
+                    //it.updateRequiredLocations()
                     val list = it.locationsList
                     val searchText = p0?.lowercase(Locale.getDefault()) ?: ""
                     val newList =
