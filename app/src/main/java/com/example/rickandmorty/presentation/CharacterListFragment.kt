@@ -68,31 +68,32 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
 
         viewModel?.let {
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
                 override fun onQueryTextSubmit(p0: String?): Boolean {
                     return false
                 }
 
                 override fun onQueryTextChange(p0: String?): Boolean {
-                    //it.updateRequiredCharacters(null)
+                    it.restoreCharactersList()
                     val list = it.charactersList
                     val searchText = p0?.lowercase(Locale.getDefault()) ?: ""
                     val newList =
                         sortedSetOf<CharacterObject>({ o1, o2 -> o1.id.compareTo(o2.id) })
 
                     if (searchText.isNotEmpty()) {
-                        list?.value?.forEach { itValue ->
+                        list.value?.forEach { itValue ->
                             if (itValue.name.lowercase(Locale.getDefault())
-                                    .contains(searchText) ||
-                                itValue.species.lowercase(Locale.getDefault())
                                     .contains(searchText) ||
                                 itValue.status.lowercase(Locale.getDefault())
                                     .contains(searchText) ||
-                                itValue.gender.lowercase(Locale.getDefault()).contains(searchText)
+                                itValue.species.lowercase(Locale.getDefault())
+                                    .contains(searchText) ||
+                               itValue.gender.lowercase(Locale.getDefault()).contains(searchText)
                             ) {
                                 newList.add(itValue)
                             }
                         }
-                        //it.replaceListForSearch(newList)
+                        it.replaceListForSearch(newList)
                     }
                     return false
                 }

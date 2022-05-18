@@ -42,7 +42,7 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[EpisodeListViewModel::class.java]
         arguments?.let {
-            viewModel?.updateArrayEpisodes(it.getStringArrayList(EPISODE_ARRAY))
+            viewModel?.updateRequiredEpisodes(it.getStringArrayList(EPISODE_ARRAY))
             if (it.getStringArrayList(EPISODE_ARRAY) != null) {
                 binding?.filterApplyButton?.hide()
             }
@@ -67,19 +67,20 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
 
         viewModel?.let {
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
                 override fun onQueryTextSubmit(p0: String?): Boolean {
                     return false
                 }
 
                 override fun onQueryTextChange(p0: String?): Boolean {
-                    it.updateArrayEpisodes(null)
+                    it.restoreEpisodesList()
                     val list = it.episodesList
                     val searchText = p0?.lowercase(Locale.getDefault()) ?: ""
                     val newList =
                         sortedSetOf<EpisodeObject>({ o1, o2 -> o1.id.compareTo(o2.id) })
 
                     if (searchText.isNotEmpty()) {
-                        list?.value?.forEach { itValue ->
+                        list.value?.forEach { itValue ->
                             if (itValue.name.lowercase(Locale.getDefault())
                                     .contains(searchText) ||
                                 itValue.episode.lowercase(Locale.getDefault())
@@ -90,7 +91,7 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
                                 newList.add(itValue)
                             }
                         }
-                        //it.replaceListForSearch(newList)
+                        it.replaceListForSearch(newList)
                     }
                     return false
                 }

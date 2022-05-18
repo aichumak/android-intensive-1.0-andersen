@@ -66,7 +66,7 @@ class LocationListFragment : Fragment(R.layout.fragment_location_list) {
                 }
 
                 override fun onQueryTextChange(p0: String?): Boolean {
-                    //it.updateRequiredLocations()
+                    it.restoreLocationsList()
                     val list = it.locationsList
                     val searchText = p0?.lowercase(Locale.getDefault()) ?: ""
                     val newList =
@@ -84,7 +84,7 @@ class LocationListFragment : Fragment(R.layout.fragment_location_list) {
                                 newList.add(itValue)
                             }
                         }
-                        //it.replaceListForSearch(newList)
+                        it.replaceListForSearch(newList)
                     }
                     return false
                 }

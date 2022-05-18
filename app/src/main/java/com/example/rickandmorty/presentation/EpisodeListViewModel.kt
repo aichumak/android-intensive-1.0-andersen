@@ -23,21 +23,32 @@ class EpisodeListViewModel(application: Application) : AndroidViewModel(applicat
     private val getFilteredEpisodes = GetFilteredEpisodesUseCase(repository)
 
     val episodesList = MutableLiveData<List<EpisodeObject>>()
+    private val episodesListFromDb = MutableLiveData<List<EpisodeObject>>()
 
-    fun updateArrayEpisodes(arrayList: ArrayList<String>?) {
+    fun restoreEpisodesList() {
+        episodesList.value = episodesListFromDb.value
+    }
+
+    fun updateRequiredEpisodes(arrayList: ArrayList<String>?) {
         viewModelScope.launch {
-            episodesList.value = getAllEpisodesUseCase.getAllEpisodes(arrayList)
+            episodesListFromDb.value = getAllEpisodesUseCase.getAllEpisodes(arrayList)
+            restoreEpisodesList()
         }
     }
 
     fun getFilteredData(filterParameters: Pair<String, String>?) {
         viewModelScope.launch {
-            episodesList.value = if (filterParameters == null) {
+            episodesListFromDb.value = if (filterParameters == null) {
                 getAllEpisodesUseCase.getAllEpisodes(null)
             } else {
                 getFilteredEpisodes.getFilteredEpisodes(filterParameters)
             }
+            restoreEpisodesList()
         }
+    }
+
+    fun replaceListForSearch(newList: TreeSet<EpisodeObject>) {
+        episodesList.value = newList.toList()
     }
 
     override fun onCleared() {

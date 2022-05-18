@@ -9,6 +9,7 @@ import com.example.rickandmorty.domain.characters.GetAllCharactersUseCase
 import com.example.rickandmorty.domain.characters.GetFilteredCharactersUseCase
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.launch
+import java.util.*
 
 class CharacterListViewModel : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
@@ -17,26 +18,36 @@ class CharacterListViewModel : ViewModel() {
     private val getFilteredCharactersUseCase = GetFilteredCharactersUseCase(repository)
 
     val charactersList = MutableLiveData<List<CharacterObject>>()
+    private val charactersListFromDb = MutableLiveData<List<CharacterObject>>()
+
+    fun restoreCharactersList() {
+        charactersList.value = charactersListFromDb.value
+    }
 
     fun updateRequiredCharacters(arrayList: ArrayList<String>?) {
         viewModelScope.launch {
-            charactersList.value = getAllCharactersUseCase.getAllCharacters(arrayList)
+            charactersListFromDb.value = getAllCharactersUseCase.getAllCharacters(arrayList)
+            restoreCharactersList()
         }
     }
 
     fun getFilteredData(filterParameters: Pair<String, String>?) {
         viewModelScope.launch {
-            charactersList.value = if (filterParameters == null) {
+            charactersListFromDb.value = if (filterParameters == null) {
                 getAllCharactersUseCase.getAllCharacters(filterParameters)
             } else {
                 getFilteredCharactersUseCase.getFilteredCharacters(filterParameters)
             }
+            restoreCharactersList()
         }
+    }
+
+    fun replaceListForSearch(newList: TreeSet<CharacterObject>) {
+        charactersList.value = newList.toList()
     }
 
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
     }
-
 }

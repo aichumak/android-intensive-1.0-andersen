@@ -1,6 +1,9 @@
 package com.example.rickandmorty.data
 
+import android.net.ConnectivityManager
+import android.telephony.TelephonyManager
 import android.util.Log
+import com.example.rickandmorty.RickAndMorty
 import com.example.rickandmorty.api.CharactersApiFactory
 import com.example.rickandmorty.data.pojo.CharacterInfoModel
 import com.example.rickandmorty.domain.characters.CharacterObject
@@ -15,7 +18,13 @@ object CharactersRepositoryImpl : CharactersRepository {
     private val compositeDisposable = CompositeDisposable()
 
     init {
+        //val telephonyManager: TelephonyManager =
+        //    RickAndMorty.getAppContext().getSystemService(RickAndMorty.TELEPHONY_SERVICE) as TelephonyManager
+//        val telephonyManager: ConnectivityManager =
+//            RickAndMorty.getAppContext().getSystemService(RickAndMorty.CONNECTIVITY_SERVICE) as ConnectivityManager
+
         for (i in 1..42) {
+            //if(telephonyManager.activeNetwork == null)
             val disposable = CharactersApiFactory.apiService.getCharactersInfoList(i)
                 .subscribeOn(Schedulers.io())
                 .subscribe({
