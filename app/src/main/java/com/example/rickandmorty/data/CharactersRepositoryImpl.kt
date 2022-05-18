@@ -1,15 +1,13 @@
 package com.example.rickandmorty.data
 
-import android.net.ConnectivityManager
-import android.telephony.TelephonyManager
 import android.util.Log
-import com.example.rickandmorty.RickAndMorty
 import com.example.rickandmorty.api.CharactersApiFactory
 import com.example.rickandmorty.data.pojo.CharacterInfoModel
 import com.example.rickandmorty.domain.characters.CharacterObject
 import com.example.rickandmorty.domain.characters.CharactersRepository
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+
 
 object CharactersRepositoryImpl : CharactersRepository {
 
@@ -18,11 +16,33 @@ object CharactersRepositoryImpl : CharactersRepository {
     private val compositeDisposable = CompositeDisposable()
 
     init {
+//        val activeConnection = {
+//            val cm = RickAndMorty.getAppContext()
+//                .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+//            var wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+//            if (wifiInfo != null && wifiInfo.isConnected) {
+//                true
+//            }
+//
+//            //wifiInfo = cm.activeNetwork()
+//            if (wifiInfo != null && wifiInfo.isConnected) {
+//                true
+//            }
+//
+//            wifiInfo = cm.getActiveNetworkInfo()
+//            if (wifiInfo != null && wifiInfo.isConnected) {
+//                true
+//            }
+//
+//            false
+//        }
         //val telephonyManager: TelephonyManager =
         //    RickAndMorty.getAppContext().getSystemService(RickAndMorty.TELEPHONY_SERVICE) as TelephonyManager
 //        val telephonyManager: ConnectivityManager =
 //            RickAndMorty.getAppContext().getSystemService(RickAndMorty.CONNECTIVITY_SERVICE) as ConnectivityManager
+        //if (activeConnection == false){
 
+        //}
         for (i in 1..42) {
             //if(telephonyManager.activeNetwork == null)
             val disposable = CharactersApiFactory.apiService.getCharactersInfoList(i)
