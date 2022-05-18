@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentEpisodeListBinding
-import com.example.rickandmorty.domain.characters.CharacterObject
 import com.example.rickandmorty.domain.episodes.EpisodeObject
 import java.util.*
 
@@ -42,21 +41,21 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[EpisodeListViewModel::class.java]
-        val listAdapter = EpisodeListAdapter(fragmentNavigator)
-        binding?.let {
-            it.rvEpisodeList.layoutManager = GridLayoutManager(context, 2)
-            it.rvEpisodeList.adapter = listAdapter
-        }
-        viewModel?.episodesList?.observe(viewLifecycleOwner) {
-            listAdapter.submitList(it)
-        }
         arguments?.let {
-            viewModel?.updateArrayEpisodes(it.getStringArrayList(EPISODE_ARRAY))
+            viewModel?.updateRequiredEpisodes(it.getStringArrayList(EPISODE_ARRAY))
             if (it.getStringArrayList(EPISODE_ARRAY) != null) {
                 binding?.filterApplyButton?.hide()
-                binding?.filterApplyButton?.setOnClickListener {
+            }
+            val listAdapter = EpisodeListAdapter(fragmentNavigator)
+            binding?.let { itBinding ->
+                itBinding.rvEpisodeList.layoutManager = GridLayoutManager(context, 2)
+                itBinding.rvEpisodeList.adapter = listAdapter
+                itBinding.filterApplyButton.setOnClickListener {
                     fragmentNavigator?.goToFilterDialogForResult(viewModel)
                 }
+            }
+            viewModel?.episodesList?.observe(viewLifecycleOwner) { itList ->
+                listAdapter.submitList(itList)
             }
         }
     }
@@ -68,12 +67,13 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
 
         viewModel?.let {
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
                 override fun onQueryTextSubmit(p0: String?): Boolean {
                     return false
                 }
 
                 override fun onQueryTextChange(p0: String?): Boolean {
-                    it.updateArrayEpisodes(null)
+                    it.restoreEpisodesList()
                     val list = it.episodesList
                     val searchText = p0?.lowercase(Locale.getDefault()) ?: ""
                     val newList =

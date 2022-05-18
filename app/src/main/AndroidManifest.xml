@@ -3,6 +3,8 @@
     package="com.example.rickandmorty">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name="com.example.rickandmorty.RickAndMorty"
@@ -14,8 +16,8 @@
         android:theme="@style/Theme.RickAndMorty">
         <activity
             android:name=".presentation.SplashScreen"
-            android:theme="@style/SplashScreenTheme"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,6 +27,7 @@
         <activity
             android:name=".presentation.FragmentActivity"
             android:exported="true">
+
         </activity>
     </application>
 

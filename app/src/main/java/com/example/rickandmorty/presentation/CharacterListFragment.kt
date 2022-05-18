@@ -22,7 +22,6 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is FragmentNavigator) fragmentNavigator = context
-        //if (context is ClickListener) clickListener = context
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,23 +40,24 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
         arguments?.let {
+            val listAdapter =
+                CharacterListAdapter(fragmentNavigator, it.getStringArrayList(CHARACTERS_ARRAY))
+            viewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
             viewModel?.updateRequiredCharacters(it.getStringArrayList(CHARACTERS_ARRAY))
-            if (it.getStringArrayList(CHARACTERS_ARRAY) != null) {
-                binding?.filterApplyButton?.hide()
-                binding?.filterApplyButton?.setOnClickListener {
+            viewModel?.charactersList?.observe(viewLifecycleOwner) { itList ->
+                listAdapter.submitList(itList)
+            }
+            binding?.let { itBinding ->
+                itBinding.rvCharacterList.layoutManager = GridLayoutManager(context, 2)
+                itBinding.rvCharacterList.adapter = listAdapter
+                itBinding.filterApplyButton.setOnClickListener {
                     fragmentNavigator?.goToFilterDialogForResult(viewModel)
                 }
+                if (it.getStringArrayList(CHARACTERS_ARRAY) != null) {
+                    itBinding.filterApplyButton.hide()
+                }
             }
-        }
-        val listAdapter = CharacterListAdapter(fragmentNavigator)
-        binding?.let {
-            it.rvCharacterList.layoutManager = GridLayoutManager(context, 2)
-            it.rvCharacterList.adapter = listAdapter
-        }
-        viewModel?.charactersList?.observe(viewLifecycleOwner) {
-            listAdapter.submitList(it)
         }
     }
 
@@ -68,12 +68,13 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
 
         viewModel?.let {
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
                 override fun onQueryTextSubmit(p0: String?): Boolean {
                     return false
                 }
 
                 override fun onQueryTextChange(p0: String?): Boolean {
-                    it.updateRequiredCharacters(null)
+                    it.restoreCharactersList()
                     val list = it.charactersList
                     val searchText = p0?.lowercase(Locale.getDefault()) ?: ""
                     val newList =
@@ -83,11 +84,11 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
                         list.value?.forEach { itValue ->
                             if (itValue.name.lowercase(Locale.getDefault())
                                     .contains(searchText) ||
-                                itValue.species.lowercase(Locale.getDefault())
-                                    .contains(searchText) ||
                                 itValue.status.lowercase(Locale.getDefault())
                                     .contains(searchText) ||
-                                itValue.gender.lowercase(Locale.getDefault()).contains(searchText)
+                                itValue.species.lowercase(Locale.getDefault())
+                                    .contains(searchText) ||
+                               itValue.gender.lowercase(Locale.getDefault()).contains(searchText)
                             ) {
                                 newList.add(itValue)
                             }

@@ -14,13 +14,10 @@ class MainFragment : Fragment(R.layout.fragment_navigation) {
     private var viewModel: MainViewModel? = null
     private var binding: FragmentNavigationBinding? = null
     private var fragmentNavigator: FragmentNavigator? = null
-    //private var clickListener: ClickListener? = null
-    // private var contactListAdapter: ContactListAdapter? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is FragmentNavigator) fragmentNavigator = context
-        //if (context is ClickListener) clickListener = context
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,18 +37,6 @@ class MainFragment : Fragment(R.layout.fragment_navigation) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-
-//        childFragmentManager.beginTransaction().run {
-//            val fragment = CharacterListFragment.newInstance(null)
-//            replace(
-//                R.id.list_view_fragment_container,
-//                fragment,
-//                CharacterListFragment.FRAGMENT_CHARACTER_LIST
-//            )
-//            //addToBackStack(CharacterListFragment.FRAGMENT_CHARACTER_LIST)
-//            commit()
-//
-//        }
         runFragment(CharacterListFragment.newInstance(null))
 
         binding?.navigationView?.setOnItemSelectedListener {
@@ -75,14 +60,13 @@ class MainFragment : Fragment(R.layout.fragment_navigation) {
 
     private fun runFragment(fragment: Fragment) {
         val fragmentTag = getFragmentTag(fragment)
-
         childFragmentManager.beginTransaction().run {
             replace(
                 R.id.list_view_fragment_container,
                 fragment,
                 fragmentTag
             )
-            //addToBackStack(fragmentTag)
+            addToBackStack(fragmentTag)
             commit()
         }
     }

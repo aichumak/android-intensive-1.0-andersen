@@ -1,5 +1,6 @@
 package com.example.rickandmorty.presentation
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.rickandmorty.R
@@ -25,12 +26,13 @@ class EpisodeListAdapter(
         return EpisodeViewHolder(episodeView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: EpisodeViewHolder, position: Int) {
         val episode = getItem(position)
         with(holder) {
-            name.text = episode.name
-            episodeView.text = episode.episode
-            airDate.text = episode.air_date
+            name.text = ("Name: ${episode.name}")
+            episodeView.text = ("Episode: ${episode.episode}")
+            airDate.text = ("Air date: ${episode.air_date}")
             itemView.setOnClickListener {
                 fragmentNavigator?.goToNextFragment(
                     FragmentsNames.EPISODE_DETAILS_FRAGMENT,

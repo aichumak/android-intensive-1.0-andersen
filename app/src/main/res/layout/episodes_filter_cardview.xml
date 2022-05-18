@@ -17,6 +17,7 @@
             android:id="@+id/episodes_filter_name_checkBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:checked="false"
             android:text="@string/filter_option_name" />
 
@@ -26,6 +27,7 @@
             android:layout_height="wrap_content"
             android:importantForAutofill="no"
             android:inputType="text"
+            android:textSize="16sp"
             android:minHeight="48dp"
             tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
@@ -34,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
+            android:textSize="16sp"
             android:text="@string/filter_option_episode"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -42,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
+            android:textSize="16sp"
             tools:ignore="LabelFor,SpeakableTextPresentCheck" />
     </RadioGroup>
 

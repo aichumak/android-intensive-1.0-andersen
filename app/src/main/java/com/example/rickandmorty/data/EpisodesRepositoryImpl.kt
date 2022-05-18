@@ -1,6 +1,5 @@
 package com.example.rickandmorty.data
 
-import androidx.lifecycle.LiveData
 import com.example.rickandmorty.api.EpisodesApiFactory
 import com.example.rickandmorty.data.pojo.EpisodeInfoModel
 import com.example.rickandmorty.domain.episodes.EpisodeObject
@@ -32,9 +31,9 @@ object EpisodesRepositoryImpl : EpisodesRepository {
         }
     }
 
-    override fun getAllEpisodes(arrayList: ArrayList<String>?): LiveData<List<EpisodeObject>> {
+    override suspend fun getAllEpisodes(arrayList: ArrayList<String>?): List<EpisodeObject> {
         return mapper.mapListDataBaseModelToListEntity(
-            if (arrayList == null){
+            if (arrayList == null) {
                 episodesInfoDao.getAllEpisodesInfoList()
             } else {
                 episodesInfoDao.getRequiredEpisodesInfoList(arrayList)
@@ -51,7 +50,13 @@ object EpisodesRepositoryImpl : EpisodesRepository {
         episodesInfoDao.insertEpisodesInfo(episodeList)
     }
 
-    override fun getFilteredEpisodes() {
-        TODO("Not yet implemented")
+    override suspend fun getFilteredEpisodes(filterParameters: Pair<String, String>): List<EpisodeObject> {
+        return mapper.mapListDataBaseModelToListEntity(
+            when (filterParameters.first) {
+                "name" -> episodesInfoDao.getNameFilteredEpisodesInfoList(filterParameters.second)
+                "episode" -> episodesInfoDao.getEpisodeFilteredEpisodesInfoList(filterParameters.second)
+                else -> throw Exception()
+            }
+        )
     }
 }

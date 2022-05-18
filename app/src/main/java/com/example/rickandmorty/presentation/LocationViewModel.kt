@@ -17,9 +17,9 @@ class LocationViewModel : ViewModel() {
 
     val location = MutableLiveData<LocationObject>()
 
-    fun getSingleLocation(position: Int) {
+    fun getSingleLocation(itemId: Int) {
         viewModelScope.launch {
-            val item = getSingleLocationUseCase.getSingleLocation(position+1)
+            val item = getSingleLocationUseCase.getSingleLocation(itemId)
             location.value = item
         }
     }

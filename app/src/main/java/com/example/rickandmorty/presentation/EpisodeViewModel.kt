@@ -17,9 +17,9 @@ class EpisodeViewModel : ViewModel() {
 
     val episode = MutableLiveData<EpisodeObject>()
 
-    fun getSingleEpisode(position: Int) {
+    fun getSingleEpisode(itemId: Int) {
         viewModelScope.launch {
-            val item = getSingleEpisodeUseCase.getSingleEpisode(position+1)
+            val item = getSingleEpisodeUseCase.getSingleEpisode(itemId)
             episode.value = item
         }
     }

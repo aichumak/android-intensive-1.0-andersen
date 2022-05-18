@@ -28,6 +28,7 @@ class FragmentActivity : AppCompatActivity(), FragmentNavigator {
             val tag = backEntry.name
             supportFragmentManager.popBackStack(tag, 0)
         }
+
     }
 
     override fun onBackPressed() {
@@ -41,36 +42,53 @@ class FragmentActivity : AppCompatActivity(), FragmentNavigator {
 
     override fun goToNextFragment(fragment: FragmentsNames, itemId: Int) {
         when (fragment) {
-            FragmentsNames.CHARACTER_DETAILS_FRAGMENT -> runFragment(CharacterFragment.newInstance(itemId))
-            FragmentsNames.EPISODE_DETAILS_FRAGMENT -> runFragment(EpisodeFragment.newInstance(itemId))
-            FragmentsNames.LOCATION_DETAILS_FRAGMENT -> runFragment(LocationFragment.newInstance(itemId))
+            FragmentsNames.CHARACTER_DETAILS_FRAGMENT -> runFragment(
+                CharacterFragment.newInstance(
+                    itemId
+                )
+            )
+            FragmentsNames.EPISODE_DETAILS_FRAGMENT -> runFragment(
+                EpisodeFragment.newInstance(
+                    itemId
+                )
+            )
+            FragmentsNames.LOCATION_DETAILS_FRAGMENT -> runFragment(
+                LocationFragment.newInstance(
+                    itemId
+                )
+            )
         }
     }
 
     override fun goToPrevFragment() {
-        supportFragmentManager.popBackStack()
+        val index = supportFragmentManager.backStackEntryCount - 1
+        val backEntry = supportFragmentManager.getBackStackEntryAt(index)
+        val tag = backEntry.name
+        supportFragmentManager.popBackStack(tag, 0)
     }
 
     override fun goToFilterDialogForResult(viewModel: ViewModel?) {
         viewModel?.let {
-        val filterDialog = FilterDialog(viewModel)
-        filterDialog.show(supportFragmentManager, "filter_dialog")
+            val filterDialog = FilterDialog(viewModel)
+            filterDialog.show(supportFragmentManager, "filter_dialog")
         }
     }
 
-    private fun runFragment(fragment: Fragment){
+    private fun runFragment(fragment: Fragment) {
+        val fragmentTag = when (fragment) {
+            is CharacterFragment -> CharacterFragment.FRAGMENT_CHARACTER_DETAILS_TAG
+            is EpisodeFragment -> EpisodeFragment.FRAGMENT_EPISODE_DETAILS_TAG
+            is LocationFragment -> LocationFragment.FRAGMENT_LOCATION_DETAILS_TAG
+            else -> null
+        }
+
         supportFragmentManager.beginTransaction().run {
             replace(
                 R.id.main_fragment_container,
                 fragment,
-                when(fragment){
-                    is CharacterFragment -> CharacterFragment.FRAGMENT_CHARACTER_DETAILS_TAG
-                    is EpisodeFragment -> EpisodeFragment.FRAGMENT_EPISODE_DETAILS_TAG
-                    is LocationFragment -> LocationFragment.FRAGMENT_LOCATION_DETAILS_TAG
-                    else -> null
-                }
+                fragmentTag
             )
-            addToBackStack(MainFragment.FRAGMENT_MAIN)
+            addToBackStack(fragmentTag)
             commit()
         }
     }

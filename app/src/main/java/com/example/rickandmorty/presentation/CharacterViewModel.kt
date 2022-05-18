@@ -4,22 +4,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickandmorty.data.CharactersRepositoryImpl
+import com.example.rickandmorty.data.LocationsRepositoryImpl
 import com.example.rickandmorty.domain.characters.CharacterObject
 import com.example.rickandmorty.domain.characters.GetCharacterUseCase
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.launch
-import java.util.*
 
 class CharacterViewModel : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
-    private val repository = CharactersRepositoryImpl
-    private val getSingleCharacterUseCase = GetCharacterUseCase(repository)
+    private val charactersRepository = CharactersRepositoryImpl
+    private val getSingleCharacter = GetCharacterUseCase(charactersRepository)
 
     val character = MutableLiveData<CharacterObject>()
 
-    fun getSingleCharacter(position: Int) {
+    fun getSingleCharacter(itemId: Int) {
         viewModelScope.launch {
-            val item = getSingleCharacterUseCase.getCharacter(position+1)
+            val item = getSingleCharacter.getCharacter(itemId)
             character.value = item
         }
     }

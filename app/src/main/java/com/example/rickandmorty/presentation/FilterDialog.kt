@@ -99,9 +99,4 @@ class FilterDialog(private val viewModel: ViewModel?) : DialogFragment() {
             else -> null
         }
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
 }

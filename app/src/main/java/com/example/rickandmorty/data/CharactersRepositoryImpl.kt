@@ -1,8 +1,9 @@
 package com.example.rickandmorty.data
 
+import android.net.ConnectivityManager
+import android.telephony.TelephonyManager
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import com.example.rickandmorty.RickAndMorty
 import com.example.rickandmorty.api.CharactersApiFactory
 import com.example.rickandmorty.data.pojo.CharacterInfoModel
 import com.example.rickandmorty.domain.characters.CharacterObject
@@ -17,7 +18,13 @@ object CharactersRepositoryImpl : CharactersRepository {
     private val compositeDisposable = CompositeDisposable()
 
     init {
+        //val telephonyManager: TelephonyManager =
+        //    RickAndMorty.getAppContext().getSystemService(RickAndMorty.TELEPHONY_SERVICE) as TelephonyManager
+//        val telephonyManager: ConnectivityManager =
+//            RickAndMorty.getAppContext().getSystemService(RickAndMorty.CONNECTIVITY_SERVICE) as ConnectivityManager
+
         for (i in 1..42) {
+            //if(telephonyManager.activeNetwork == null)
             val disposable = CharactersApiFactory.apiService.getCharactersInfoList(i)
                 .subscribeOn(Schedulers.io())
                 .subscribe({
@@ -35,7 +42,7 @@ object CharactersRepositoryImpl : CharactersRepository {
         }
     }
 
-    override fun getAllCharacters(arrayList: ArrayList<String>?): LiveData<List<CharacterObject>> {
+    override suspend fun getAllCharacters(arrayList: ArrayList<String>?): List<CharacterObject> {
         return mapper.mapListDataBaseModelToListEntity(
             if (arrayList == null) {
                 charactersInfoDao.getAllCharactersInfoList()
@@ -54,11 +61,16 @@ object CharactersRepositoryImpl : CharactersRepository {
         charactersInfoDao.addCharacterList(characterList)
     }
 
-    override fun getFilteredCharacters(filterParameters: Pair<String, String>): LiveData<List<CharacterObject>> {
+    override suspend fun getFilteredCharacters(filterParameters: Pair<String, String>): List<CharacterObject> {
         return mapper.mapListDataBaseModelToListEntity(
-            charactersInfoDao.getFilteredCharactersInfoList(
-                filterParameters.second.toString()
-            )
+            when (filterParameters.first) {
+                "name" -> charactersInfoDao.getNameFilteredCharactersInfoList(filterParameters.second)
+                "status" -> charactersInfoDao.getStatusFilteredCharactersInfoList(filterParameters.second)
+                "species" -> charactersInfoDao.getSpeciesFilteredCharactersInfoList(filterParameters.second)
+                "type" -> charactersInfoDao.getTypeFilteredCharactersInfoList(filterParameters.second)
+                "gender" -> charactersInfoDao.getGenderFilteredCharactersInfoList(filterParameters.second)
+                else -> throw Exception()
+            }
         )
     }
 }

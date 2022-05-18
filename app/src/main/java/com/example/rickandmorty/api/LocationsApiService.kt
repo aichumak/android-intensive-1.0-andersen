@@ -2,9 +2,7 @@ package com.example.rickandmorty.api
 
 import com.example.rickandmorty.data.pojo.LocationInfo
 import com.example.rickandmorty.data.pojo.LocationResult
-import com.example.rickandmorty.data.pojo.LocationsInfoListOfResult
 import io.reactivex.Single
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 

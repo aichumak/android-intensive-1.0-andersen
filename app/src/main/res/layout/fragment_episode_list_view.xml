@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#ECEC74"
+        app:cardBackgroundColor="@color/yellow"
         app:cardCornerRadius="5dp"
         app:cardElevation="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,25 +27,22 @@
                 android:id="@+id/episode_details_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
                 android:text="@string/tv_default_text"
-                android:textColor="@color/text_color" />
+                android:textColor="@color/blue" />
 
             <TextView
                 android:id="@+id/episode_details_episode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
                 android:text="@string/tv_default_text"
-                android:textColor="@color/text_color" />
+                android:textColor="@color/blue" />
 
             <TextView
                 android:id="@+id/episode_details_air_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
                 android:text="@string/tv_default_text"
-                android:textColor="@color/text_color" />
+                android:textColor="@color/blue" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

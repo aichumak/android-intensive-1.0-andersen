@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
+            android:textSize="16sp"
             android:text="@string/filter_option_name" />
 
         <EditText
@@ -27,6 +28,7 @@
             android:importantForAutofill="no"
             android:inputType="text"
             android:minHeight="48dp"
+            android:textSize="16sp"
             tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
         <RadioButton
@@ -34,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
+            android:textSize="16sp"
             android:text="@string/filter_option_status"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -42,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
+            android:textSize="16sp"
             tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
         <RadioButton
@@ -49,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
+            android:textSize="16sp"
             android:text="@string/filter_option_species" />
 
         <EditText
@@ -57,6 +62,7 @@
             android:layout_height="wrap_content"
             android:importantForAutofill="no"
             android:inputType="text"
+            android:textSize="16sp"
             android:minHeight="48dp"
             tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
@@ -65,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
+            android:textSize="16sp"
             android:text="@string/filter_option_type" />
 
         <EditText
@@ -74,6 +81,7 @@
             android:importantForAutofill="no"
             android:inputType="text"
             android:minHeight="48dp"
+            android:textSize="16sp"
             tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
         <RadioButton
@@ -81,6 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
+            android:textSize="16sp"
             android:text="@string/filter_option_gender"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -88,6 +97,7 @@
             android:id="@+id/characters_filter_gender_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:minHeight="48dp"
             tools:ignore="LabelFor,SpeakableTextPresentCheck" />
     </RadioGroup>
