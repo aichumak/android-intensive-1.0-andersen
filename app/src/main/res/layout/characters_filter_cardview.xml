@@ -18,8 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:textSize="16sp"
-            android:text="@string/filter_option_name" />
+            android:text="@string/filter_option_name"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/characters_filter_name_edit_text"
@@ -36,8 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:textSize="16sp"
             android:text="@string/filter_option_status"
+            android:textSize="16sp"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <AutoCompleteTextView
@@ -53,8 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:textSize="16sp"
-            android:text="@string/filter_option_species" />
+            android:text="@string/filter_option_species"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/characters_filter_species_edit_text"
@@ -62,8 +62,8 @@
             android:layout_height="wrap_content"
             android:importantForAutofill="no"
             android:inputType="text"
-            android:textSize="16sp"
             android:minHeight="48dp"
+            android:textSize="16sp"
             tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
         <RadioButton
@@ -71,8 +71,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:textSize="16sp"
-            android:text="@string/filter_option_type" />
+            android:text="@string/filter_option_type"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/characters_filter_type_edit_text"
@@ -89,16 +89,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:textSize="16sp"
             android:text="@string/filter_option_gender"
+            android:textSize="16sp"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <AutoCompleteTextView
             android:id="@+id/characters_filter_gender_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:minHeight="48dp"
+            android:textSize="16sp"
             tools:ignore="LabelFor,SpeakableTextPresentCheck" />
     </RadioGroup>
 
@@ -109,14 +109,14 @@
         android:layout_marginStart="8dp"
         android:text="cancel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"/>
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
         android:id="@+id/filter_apply_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/filter_option_apply_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        android:text="@string/filter_option_apply_button"/>
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

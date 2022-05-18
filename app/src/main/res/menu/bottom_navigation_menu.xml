@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_characters_list"
-        android:title="@string/characters"/>
+        android:title="@string/characters" />
     <item
         android:id="@+id/navigation_locations_list"
-        android:title="@string/locations"/>
+        android:title="@string/locations" />
     <item
         android:id="@+id/navigation_episodes_list"
-        android:title="@string/episodes"/>
+        android:title="@string/episodes" />
 </menu>
