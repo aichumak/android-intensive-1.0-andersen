@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
 }
+apply plugin: 'kotlin-android'
 
 android {
     compileSdk 32
@@ -98,6 +99,4 @@ dependencies {
 //    //testImplementation "io.mockk:mockk:1.12.4"
 
     testImplementation "io.mockk:mockk:1.12.4"
-
-
 }
