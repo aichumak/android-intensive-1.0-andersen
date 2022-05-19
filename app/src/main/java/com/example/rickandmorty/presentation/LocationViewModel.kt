@@ -4,10 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickandmorty.data.LocationsRepositoryImpl
-import com.example.rickandmorty.domain.characters.CharacterObject
 import com.example.rickandmorty.domain.locations.GetSingleLocationUseCase
 import com.example.rickandmorty.domain.locations.LocationObject
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.launch
 
 class LocationViewModel : ViewModel() {

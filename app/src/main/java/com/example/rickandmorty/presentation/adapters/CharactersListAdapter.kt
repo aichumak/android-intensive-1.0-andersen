@@ -6,7 +6,6 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.rickandmorty.databinding.FragmentCharacterDetailsBinding
-import com.example.rickandmorty.data.pojo.CharacterInfo
 import com.example.rickandmorty.domain.characters.CharacterObject
 import com.squareup.picasso.Picasso
 
@@ -20,11 +19,17 @@ class CharactersListAdapter : PagingDataAdapter<CharacterObject,
 
     companion object {
         val diffCallback = object : DiffUtil.ItemCallback<CharacterObject>() {
-            override fun areItemsTheSame(oldItem: CharacterObject, newItem: CharacterObject): Boolean {
+            override fun areItemsTheSame(
+                oldItem: CharacterObject,
+                newItem: CharacterObject
+            ): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: CharacterObject, newItem: CharacterObject): Boolean {
+            override fun areContentsTheSame(
+                oldItem: CharacterObject,
+                newItem: CharacterObject
+            ): Boolean {
                 return oldItem == newItem
             }
         }
@@ -65,10 +70,10 @@ class CharactersListAdapter : PagingDataAdapter<CharacterObject,
 //                imageView.load(imageLink) {
 //                    crossfade(true)
 //                    crossfade(1000)
-               }
             }
         }
-
     }
+
+}
 
 

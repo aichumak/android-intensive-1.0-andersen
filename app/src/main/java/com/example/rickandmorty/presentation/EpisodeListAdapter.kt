@@ -4,15 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.rickandmorty.R
-import com.example.rickandmorty.data.CharactersRepositoryImpl
-import com.example.rickandmorty.domain.characters.CharacterObject
-import com.example.rickandmorty.domain.characters.CharactersRepository
-import com.example.rickandmorty.domain.characters.GetAllCharactersUseCase
 import com.example.rickandmorty.domain.episodes.EpisodeObject
-import com.example.rickandmorty.domain.episodes.EpisodesRepository
-import com.example.rickandmorty.domain.episodes.GetAllEpisodesUseCase
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
 
 class EpisodeListAdapter(
     val fragmentNavigator: FragmentNavigator? = null

@@ -88,7 +88,7 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
                                     .contains(searchText) ||
                                 itValue.species.lowercase(Locale.getDefault())
                                     .contains(searchText) ||
-                               itValue.gender.lowercase(Locale.getDefault()).contains(searchText)
+                                itValue.gender.lowercase(Locale.getDefault()).contains(searchText)
                             ) {
                                 newList.add(itValue)
                             }

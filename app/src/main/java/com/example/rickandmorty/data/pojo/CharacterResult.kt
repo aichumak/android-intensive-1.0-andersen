@@ -6,5 +6,5 @@ import com.google.gson.annotations.Expose
 data class CharacterResult(
     @Expose
     val results: List<CharacterObject>? = null,
-    val info: CharacterInfo? =null
+    val info: CharacterInfo? = null
 )

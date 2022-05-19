@@ -6,7 +6,6 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.FragmentLocationListBinding
-import com.example.rickandmorty.data.pojo.LocationInfo
 import com.example.rickandmorty.domain.locations.LocationObject
 
 class LocationsListAdapter : PagingDataAdapter<LocationObject,
@@ -20,11 +19,17 @@ class LocationsListAdapter : PagingDataAdapter<LocationObject,
 
     companion object {
         val diffCallback = object : DiffUtil.ItemCallback<LocationObject>() {
-            override fun areItemsTheSame(oldItem: LocationObject, newItem: LocationObject): Boolean {
+            override fun areItemsTheSame(
+                oldItem: LocationObject,
+                newItem: LocationObject
+            ): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: LocationObject, newItem: LocationObject): Boolean {
+            override fun areContentsTheSame(
+                oldItem: LocationObject,
+                newItem: LocationObject
+            ): Boolean {
                 return oldItem == newItem
             }
         }

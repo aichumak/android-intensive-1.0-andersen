@@ -6,7 +6,6 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.FragmentEpisodeListBinding
-import com.example.rickandmorty.data.pojo.EpisodeInfo
 import com.example.rickandmorty.domain.episodes.EpisodeObject
 
 class EpisodesListAdapter : PagingDataAdapter<EpisodeObject,
@@ -24,7 +23,10 @@ class EpisodesListAdapter : PagingDataAdapter<EpisodeObject,
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: EpisodeObject, newItem: EpisodeObject): Boolean {
+            override fun areContentsTheSame(
+                oldItem: EpisodeObject,
+                newItem: EpisodeObject
+            ): Boolean {
                 return oldItem == newItem
             }
         }
