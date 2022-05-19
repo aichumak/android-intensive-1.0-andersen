@@ -9,7 +9,6 @@ import com.example.rickandmorty.domain.characters.CharacterObject
 import com.example.rickandmorty.domain.characters.GetAllCharactersUseCase
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import java.util.ArrayList
 
 class CharacterListAdapter(
     val fragmentNavigator: FragmentNavigator? = null,

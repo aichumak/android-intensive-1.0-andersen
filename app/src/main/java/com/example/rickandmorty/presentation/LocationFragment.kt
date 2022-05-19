@@ -10,11 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentLocationDetailsBinding
-import com.example.rickandmorty.domain.locations.LocationObject
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
 
-class LocationFragment: Fragment(R.layout.fragment_location_details) {
+class LocationFragment : Fragment(R.layout.fragment_location_details) {
 
     private var binding: FragmentLocationDetailsBinding? = null
     private var viewModel: LocationViewModel? = null
@@ -59,7 +56,7 @@ class LocationFragment: Fragment(R.layout.fragment_location_details) {
         }
     }
 
-   companion object {
+    companion object {
         private const val LOCATION_ID = "LOCATION_DETAILS_ID"
         const val FRAGMENT_LOCATION_DETAILS_TAG = "FRAGMENT_LOCATION_DETAILS_TAG"
 

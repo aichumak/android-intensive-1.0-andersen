@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rickandmorty.data.LocationsRepositoryImpl
-import com.example.rickandmorty.domain.episodes.EpisodeObject
 import com.example.rickandmorty.domain.locations.GetAllLocationsUseCase
 import com.example.rickandmorty.domain.locations.GetFilteredLocationsUseCase
 import com.example.rickandmorty.domain.locations.LocationObject
